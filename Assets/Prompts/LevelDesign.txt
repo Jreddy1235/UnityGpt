@@ -1,0 +1,68 @@
+We need to generate a level design for a board game. Level design output will be in the form of grid.
+Each element inside a grid represents a tile and each tile may or may not contain board elements like character, balloon, obstacles etc.
+If a tile contains a board element, it should be represented by a number greater than 1.
+If a tile does not contain a board element, it should be represented by either 0 or 1.
+1 means walkable tile.
+0 means non walkable tile.
+There are following board elements:
+11 means red balloon.
+215 means red character.
+12 means red obstacle.
+
+Generated grid should contain either 0 or 1 or the board elements mentioned above.
+There can be only one character in the grid.
+All the board elements should be walkable except for obstacles.
+For a valid grid, there must be a walkable path from character to balloon.
+Path is defined as a series of walkable tiles either horizontally or vertically.
+
+For grid below:
+4 0 215
+2 7 1
+6 3 11
+List of all tiles with their representation along with the value at that tile:
+(1,1): 4. Tile is walkable
+(1,2): 0. Tile is not walkable
+(1,3): 215. Tile is walkable
+(2,1): 2. Tile is walkable
+(2,2): 7. Tile is walkable
+(2,3): 1. Tile is walkable
+(3,1): 6. Tile is walkable
+(3,2): 3. Tile is walkable
+(3,3): 11. Tile is walkable
+
+For example:
+Example 1:
+1   1 1
+215 0 1
+0   0 11
+there is a path from character to balloon as follows: (2,1) -> (1,1) -> (1,2) -> (1,3) -> (2,3) -> (3,3)
+(2,1) is the representation of tile where character is present. Here 2 means row number and 1 means column number.
+Value at tile (1,3) is 0 and hence not walkable.
+
+Example 2:
+0 215 0
+0 1   11
+0 0   0
+there is a path from character to balloon as follows: (1,2) -> (2,2) -> (2,3)
+
+Example 3:
+0 0 215
+0 0 1
+0 0 11
+there is a path from character to balloon as follows: (1,3) -> (2,3) -> (3,3)
+
+Example 4:
+0 0 0
+0 0 11
+0 0 215
+there is a path from character to balloon as follows: (3,3) -> (2,3)
+
+Prompt: Generate a grid of 3 rows and 4 columns. Also find a path from character to balloon in the generated grid.
+Completion: 
+0 215 0  0
+0 1   0  0
+0 1   1 11
+Path : (1,2) -> (2,2) -> (2,3) -> (3,3) -> (3,4)
+
+Prompt: Generate a grid of 3 rows and 3 columns. Also find a path from character to balloon in the generated grid.
+Completion: 

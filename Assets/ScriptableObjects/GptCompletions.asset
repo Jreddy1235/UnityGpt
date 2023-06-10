@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8060ad9e54dc43b5b2ecb3aa5418530c, type: 3}
+  m_Name: GptCompletions
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 895efb61ede18494aa84c1e330ff7cb1, type: 2}
+  completionsUrl: completions
+  completionRequest:
+    maxTokens: 60
+    temperature: 0
+    topP: 0
+    frequencyPenalty: 0
+    presencePenalty: 0
+  userPrompt: {fileID: 0}
+  userResponse: When is the next indian public hollday?
+  model: text-davinci-003

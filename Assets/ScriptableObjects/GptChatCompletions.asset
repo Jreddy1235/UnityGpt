@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8a7169ba854d0bbab01f55613c2d89, type: 3}
+  m_Name: GptChatCompletions
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 895efb61ede18494aa84c1e330ff7cb1, type: 2}
+  chatCompletionsUrl: chat/completions
+  completionRequest:
+    maxTokens: 120
+    temperature: 0
+    topP: 0
+    frequencyPenalty: 0
+    presencePenalty: 0
+  userPrompt: {fileID: 4900000, guid: 18f45eedc3e6e4e498c5c0a9f252e1d0, type: 3}
+  role: user
+  userResponse: 
+  model: gpt-3.5-turbo
