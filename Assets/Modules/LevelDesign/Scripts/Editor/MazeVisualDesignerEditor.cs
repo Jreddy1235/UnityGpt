@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace UnityGPT
 {
-    [CustomEditor(typeof(GptVisualDesigner))]
-    public class GptVisualDesignerEditor : Editor
+    [CustomEditor(typeof(MazeVisualDesigner))]
+    public class MazeVisualDesignerEditor : Editor
     {
-        private GptVisualDesigner _visualDesigner;
+        private MazeVisualDesigner _visualDesigner;
         private string _gridString;
         private int _width;
 
         private void OnEnable()
         {
-            _visualDesigner = (GptVisualDesigner) target;
+            _visualDesigner = (MazeVisualDesigner) target;
             _gridString = serializedObject.FindProperty("gridString").stringValue;
         }
 
