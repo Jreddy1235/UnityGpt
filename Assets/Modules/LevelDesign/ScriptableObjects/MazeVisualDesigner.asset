@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MazeVisualDesigner
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: c4f6e8a6893684051b376a4c291ee453, type: 2}
-  gridString: 1,11,0,215
-  rows: 2
-  columns: 2
+  gridCreator: {fileID: 11400000, guid: e53f59d6175c44420bc396af92eb60fa, type: 2}
+  gridString: -2,-2,-2,-2,-2,-2,-2,-2,-2
+  rows: 3
+  columns: 3
