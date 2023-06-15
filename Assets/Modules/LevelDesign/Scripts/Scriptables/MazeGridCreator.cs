@@ -1,6 +1,8 @@
 using System;
+using CleverCrow.Fluid.BTs.TaskParents.Composites;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using UniRx;
 using UnityEditor;
@@ -22,22 +24,24 @@ namespace UnityGPT
             }
         }
 
-        private int[,] _grid = new int[,]
+        [SerializeField] private BehaviorTree tree;
+        [SerializeField] private MazeTreeInfo treeNodes;
+
+        private GameObject _gameObject;
+        private bool _isEnded;
+
+        private int[,] _grid =
         {
             {-2, -2, -2},
             {-2, -2, -2},
             {-2, -2, -2},
         };
 
-        [SerializeField] private BehaviorTree tree;
-
-        private GameObject _gameObject;
-        private bool _isEnded;
-
+        [UsedImplicitly]
         [Button]
         private void CreateGrid()
         {
-            CreateGrid((_, _, _) => Debug.Log("Hi"));
+            CreateGrid((_, _, _) => Debug.Log("Grid Created"));
         }
 
         public void CreateGrid(Action<string, int, int> onComplete)
@@ -45,13 +49,14 @@ namespace UnityGPT
             _instance = this;
             _isEnded = false;
             SpawnGameObject();
+            //var nodes = treeNodes.GetNodes();
             tree = new BehaviorTreeBuilder(_gameObject)
                 .Sequence()
-                .Condition("Custom Condition", () => true)
+                .AddNode(treeNodes.GetNodes())
                 .Do("Custom Action", () =>
                 {
                     _isEnded = true;
-                    onComplete?.Invoke(GetGridString(), _grid.GetLength(1), _grid.GetLength(0));
+                    onComplete?.Invoke(GetGridString(), _grid.GetLength(0), _grid.GetLength(1));
                     Observable.ReturnUnit().DelayFrame(1)
                         .Subscribe(_ => DestroyGameObject()).AddTo(_gameObject);
 
@@ -83,6 +88,12 @@ namespace UnityGPT
                 name = GetType().Name,
                 hideFlags = HideFlags.HideInHierarchy
             };
+            _gameObject.AddComponent<MazeGridController>();
+        }
+
+        private bool FilterType(Type type)
+        {
+            return type.IsSubclassOf(typeof(MazeBaseAction));
         }
 
         private void DestroyGameObject()

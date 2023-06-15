@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.solidalloy.type-references": "2.15.1",
     "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
     "com.fluid.behavior-tree": "2.2.3",
     "com.unity.collab-proxy": "2.0.3",
@@ -52,6 +53,15 @@
       "url": "https://registry.npmjs.org",
       "scopes": [
         "com.fluid"
+      ]
+    },
+   {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.solidalloy",
+        "com.openupm",
+        "org.nuget"
       ]
     }
   ]

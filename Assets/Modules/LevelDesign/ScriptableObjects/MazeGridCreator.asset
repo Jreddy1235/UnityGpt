@@ -12,3 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da66f6ebc3e64d18a224e8aa191dd6e8, type: 3}
   m_Name: MazeGridCreator
   m_EditorClassIdentifier: 
+  treeNodes:
+    parentNode:
+      GuidAssignmentFailed: 0
+      GUID: 887f54327b8d14ed5a7cd909fb8bb077
+      _typeNameAndAssembly: CleverCrow.Fluid.BTs.TaskParents.Composites.Sequence,
+        Fluid.BehaviorTree
+      _suppressLogs: 0
+    childNodes:
+    - parentNode:
+        GuidAssignmentFailed: 0
+        GUID: 1940e0bae27b458299d7398db8e186c4
+        _typeNameAndAssembly: UnityGPT.MarkAsNoTile, Assembly-CSharp
+        _suppressLogs: 0
+      childNodes: []
+    - parentNode:
+        GuidAssignmentFailed: 0
+        GUID: 1940e0bae27b458299d7398db8e186c4
+        _typeNameAndAssembly: UnityGPT.MarkAsNoTile, Assembly-CSharp
+        _suppressLogs: 0
+      childNodes: []
