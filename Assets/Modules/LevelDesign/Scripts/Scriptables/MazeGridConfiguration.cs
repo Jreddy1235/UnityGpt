@@ -9,6 +9,7 @@ namespace UnityGPT
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private Vector2Int offset;
         [SerializeField] private Difficulty difficulty;
+        [SerializeField] private bool avoidShortcuts;
         [SerializeField] private Character[] characters;
         [SerializeField] private Collectable[] collectables;
         [SerializeField] private Obstacle[] obstacles;
@@ -19,6 +20,7 @@ namespace UnityGPT
         public Character[] Characters => characters;
         public Collectable[] Collectables => collectables;
         public Obstacle[] Obstacles => obstacles;
+        public bool AvoidShortcuts => avoidShortcuts;
     }
 
     public enum Difficulty
@@ -33,11 +35,11 @@ namespace UnityGPT
     {
         [SerializeField] private string name;
         [SerializeField] private int id;
-        [SerializeField] private Vector2Int amount;
+        [SerializeField] private Range amount;
 
         public string Name => name;
         public int Id => id;
-        public Vector2Int Amount => amount;
+        public Range Amount => amount;
     }
 
     [Serializable]
@@ -45,13 +47,13 @@ namespace UnityGPT
     {
         [SerializeField] private string name;
         [SerializeField] private int id;
-        [SerializeField] private Vector2Int amount;
-        [SerializeField] private Vector2Int pathLength;
+        [SerializeField] private Range amount;
+        [SerializeField] private Range pathLength;
 
         public string Name => name;
         public int Id => id;
-        public Vector2Int Amount => amount;
-        public Vector2Int PathLength => pathLength;
+        public Range Amount => amount;
+        public Range PathLength => pathLength;
     }
 
     [Serializable]
@@ -59,12 +61,22 @@ namespace UnityGPT
     {
         [SerializeField] private string name;
         [SerializeField] private int id;
-        [SerializeField] private Vector2Int amount;
+        [SerializeField] private Range amount;
         [SerializeField] private int weight;
 
         public string Name => name;
         public int Id => id;
-        public Vector2Int Amount => amount;
+        public Range Amount => amount;
         public int Weight => weight;
+    }
+    
+    [Serializable]
+    public class Range
+    {
+        [SerializeField] private int min;
+        [SerializeField] private int max;
+
+        public int Min => min;
+        public int Max => max;
     }
 }
