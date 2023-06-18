@@ -6,6 +6,8 @@ namespace UnityGPT
     public class MazeBaseAction : ActionBase
     {
         protected MazeGridController GridController { get; private set; }
+        protected MazeGrid Grid => GridController.Grid;
+        protected MazeGridConfiguration Configuration => GridController.Configuration;
 
         protected override void OnInit()
         {

@@ -1,12 +1,15 @@
 using System;
-using CleverCrow.Fluid.BTs.TaskParents.Composites;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 using JetBrains.Annotations;
 using NaughtyAttributes;
+using TypeReferences;
 using UniRx;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace UnityGPT
 {
@@ -15,33 +18,19 @@ namespace UnityGPT
     {
         private static MazeGridCreator _instance;
 
-        [InitializeOnLoad]
-        private class TickHandler
-        {
-            static TickHandler()
-            {
-                EditorApplication.update += Tick;
-            }
-        }
-
+        [SerializeField] private MazeGridConfiguration configuration;
         [SerializeField] private BehaviorTree tree;
+        [Inherits(typeof(MazeBasePathRule))] [SerializeField]
+        private TypeReference[] pathRules;
         [SerializeField] private MazeTreeInfo treeNodes;
 
         private GameObject _gameObject;
         private bool _isEnded;
 
-        private int[,] _grid =
+        private static void Tick()
         {
-            {-2, -2, -2},
-            {-2, -2, -2},
-            {-2, -2, -2},
-        };
-
-        [UsedImplicitly]
-        [Button]
-        private void CreateGrid()
-        {
-            CreateGrid((_, _, _) => Debug.Log("Grid Created"));
+            if (_instance != null && _instance.tree?.Root != null && !_instance._isEnded)
+                _instance.tree.Tick();
         }
 
         public void CreateGrid(Action<string, int, int> onComplete)
@@ -49,31 +38,50 @@ namespace UnityGPT
             _instance = this;
             _isEnded = false;
             SpawnGameObject();
-            //var nodes = treeNodes.GetNodes();
+
+            TaskStatus OnGridCreationDone()
+            {
+                _isEnded = true;
+                var grid = _gameObject.GetComponent<MazeGridController>().Grid.ToIntArray();
+                onComplete?.Invoke(GetGridString(grid), grid.GetLength(0), grid.GetLength(1));
+                Observable.ReturnUnit()
+                    .DelayFrame(1)
+                    .Subscribe(_ => DestroyGameObject())
+                    .AddTo(_gameObject);
+
+                return TaskStatus.Success;
+            }
+
             tree = new BehaviorTreeBuilder(_gameObject)
                 .Sequence()
-                .AddNode(treeNodes.GetNodes())
-                .Do("Custom Action", () =>
-                {
-                    _isEnded = true;
-                    onComplete?.Invoke(GetGridString(), _grid.GetLength(0), _grid.GetLength(1));
-                    Observable.ReturnUnit().DelayFrame(1)
-                        .Subscribe(_ => DestroyGameObject()).AddTo(_gameObject);
-
-                    return TaskStatus.Success;
-                })
+                .AddNode(treeNodes.GetNodes(_gameObject))
+                .Do(OnGridCreationDone)
                 .End()
                 .Build();
         }
 
-        private string GetGridString()
+        [UsedImplicitly]
+        [Button]
+        private void CreateGrid()
+        {
+            CreateGrid((_, _, _) => Debug.Log("Grid Created"));
+        }
+        
+        [UsedImplicitly]
+        [Button]
+        private void DoReset()
+        {
+            tree?.Reset();
+        }
+
+        private string GetGridString(int[,] grid)
         {
             var gridStr = "";
-            for (var i = 0; i < _grid.GetLength(1); i++)
+            for (var i = 0; i < grid.GetLength(1); i++)
             {
-                for (var j = 0; j < _grid.GetLength(0); j++)
+                for (var j = 0; j < grid.GetLength(0); j++)
                 {
-                    gridStr += _grid[j, i] + ",";
+                    gridStr += grid[j, i] + ",";
                 }
             }
 
@@ -88,12 +96,15 @@ namespace UnityGPT
                 name = GetType().Name,
                 hideFlags = HideFlags.HideInHierarchy
             };
-            _gameObject.AddComponent<MazeGridController>();
-        }
-
-        private bool FilterType(Type type)
-        {
-            return type.IsSubclassOf(typeof(MazeBaseAction));
+            
+            var rules = new MazeBasePathRule[pathRules.Length];
+            for (var i = 0; i < pathRules.Length; i++)
+            {
+                rules[i] = (MazeBasePathRule) Activator.CreateInstance(pathRules[i].Type);
+            }
+            
+            var gridController = _gameObject.AddComponent<MazeGridController>();
+            gridController.SetData(configuration,rules);
         }
 
         private void DestroyGameObject()
@@ -102,10 +113,15 @@ namespace UnityGPT
                 DestroyImmediate(_gameObject);
         }
 
-        private static void Tick()
+#if UNITY_EDITOR
+        [InitializeOnLoad]
+        private class TickHandler
         {
-            if (_instance != null && _instance.tree?.Root != null && !_instance._isEnded)
-                _instance.tree.Tick();
+            static TickHandler()
+            {
+                EditorApplication.update += Tick;
+            }
         }
+#endif
     }
 }

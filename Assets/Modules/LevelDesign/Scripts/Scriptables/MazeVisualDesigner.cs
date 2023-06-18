@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -19,16 +20,18 @@ namespace UnityGPT
             settings = Resources.Load<MazeSettings>("MazeSettings");
         }
 
-        public void GenerateGrid()
+        public void GenerateGrid(Action onGridCreated)
         {
-            if (gridCreator != null) gridCreator.CreateGrid(OnGridCreated);
-        }
-
-        private void OnGridCreated(string gridStr, int rowCount, int columnCount)
-        {
-            gridString = gridStr;
-            rows = rowCount;
-            columns = columnCount;
+            void OnGridCreated(string gridStr, int rowCount, int columnCount)
+            {
+                gridString = gridStr;
+                rows = rowCount;
+                columns = columnCount;
+                onGridCreated?.Invoke();
+            }
+            
+            if (gridCreator != null) 
+                gridCreator.CreateGrid(OnGridCreated);
         }
     }
 }

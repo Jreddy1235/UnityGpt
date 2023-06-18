@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da66f6ebc3e64d18a224e8aa191dd6e8, type: 3}
   m_Name: MazeGridCreator
   m_EditorClassIdentifier: 
+  configuration: {fileID: 11400000, guid: d81df595dbe9245468dea8859aafd25b, type: 2}
+  pathRules: []
   treeNodes:
     parentNode:
       GuidAssignmentFailed: 0
@@ -23,12 +25,18 @@ MonoBehaviour:
     - parentNode:
         GuidAssignmentFailed: 0
         GUID: 1940e0bae27b458299d7398db8e186c4
-        _typeNameAndAssembly: UnityGPT.MarkAsNoTile, Assembly-CSharp
+        _typeNameAndAssembly: UnityGPT.MazeCreateEmptyGrid, Assembly-CSharp
         _suppressLogs: 0
       childNodes: []
     - parentNode:
         GuidAssignmentFailed: 0
-        GUID: 1940e0bae27b458299d7398db8e186c4
-        _typeNameAndAssembly: UnityGPT.MarkAsNoTile, Assembly-CSharp
+        GUID: a773bae5c13d4cef89f9bd6077d9651c
+        _typeNameAndAssembly: UnityGPT.MazeSelectRandomTile, Assembly-CSharp
+        _suppressLogs: 0
+      childNodes: []
+    - parentNode:
+        GuidAssignmentFailed: 0
+        GUID: 8e9b756e99d44bdd8b074c11293a88cc
+        _typeNameAndAssembly: UnityGPT.MazePlaceCharactersOnGrid, Assembly-CSharp
         _suppressLogs: 0
       childNodes: []

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,8 +27,7 @@ namespace UnityGPT
 
             if (GUILayout.Button("Generate Grid"))
             {
-                _visualDesigner.GenerateGrid();
-                _gridString = serializedObject.FindProperty("gridString").stringValue;
+                _visualDesigner.GenerateGrid(OnGridCreated);
             }
 
             if (GUILayout.Button("Clear Grid"))
@@ -38,10 +38,19 @@ namespace UnityGPT
             GenerateGrid();
         }
 
+        private void OnGridCreated()
+        {
+            Observable.ReturnUnit().DelayFrame(1).Subscribe(_ =>
+            {
+                _gridString = serializedObject.FindProperty("gridString").stringValue;
+                GUI.changed = true;
+            });
+        }
+
         private void GenerateGrid()
         {
             if (string.IsNullOrEmpty(_gridString)) return;
-            
+
             try
             {
                 GUILayout.Space(10);

@@ -14,7 +14,7 @@ namespace UnityGPT
 
         [SerializeField] private MazeTreeInfo[] childNodes;
 
-        public ITask GetNodes()
+        public ITask GetNodes(GameObject owner)
         {
             if (parentNode == null) return null;
 
@@ -25,7 +25,7 @@ namespace UnityGPT
                 var parent = (CompositeBase) Activator.CreateInstance(type);
                 foreach (var child in childNodes)
                 {
-                    parent.AddChild(child.GetNodes());
+                    parent.AddChild(child.GetNodes(owner));
                 }
 
                 nodes = parent;
@@ -35,6 +35,7 @@ namespace UnityGPT
                 nodes = (ITask) Activator.CreateInstance(type);
             }
 
+            nodes.Owner = owner;
             return nodes;
         }
     }

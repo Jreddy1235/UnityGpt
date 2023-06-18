@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf2a4a597e7f43b9a3fb7e0184c53dd, type: 3}
   m_Name: MazeGridConfiguration
   m_EditorClassIdentifier: 
-  gridSize: {x: 0, y: 0}
+  gridSize: {x: 3, y: 4}
   offset: {x: 0, y: 0}
   difficulty: 0
+  characters:
+  - name: Red
+    id: 215
+    amount: {x: 1, y: 1}
+  collectables: []
+  obstacles: []
