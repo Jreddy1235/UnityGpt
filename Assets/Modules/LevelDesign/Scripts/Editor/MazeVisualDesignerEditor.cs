@@ -70,12 +70,11 @@ namespace UnityGPT
                             break;
 
                         var spriteMapping = _visualDesigner.Settings.GetSpriteMapping(numbers[index]);
-                        var pathIndicatorTexture = _visualDesigner.Settings.GetSpriteMapping(-3).Sprite.texture;
                         if (spriteMapping != null)
                         {
                             GUI.color = spriteMapping.Color;
                             var content = spriteMapping.HasBackground
-                                ? GetCombinedContent(spriteMapping.Sprite.texture, pathIndicatorTexture)
+                                ? GetCombinedContent(spriteMapping.Sprite.texture, _visualDesigner.Settings.GetSpriteMapping(-3).Sprite.texture)
                                 : new GUIContent(spriteMapping.Sprite.texture);
                             if (GUILayout.Button(content, new GUIStyle(GUI.skin.button), GUILayout.Width(width),
                                     GUILayout.Height(width)))
