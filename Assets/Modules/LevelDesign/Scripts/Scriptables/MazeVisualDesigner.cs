@@ -9,11 +9,13 @@ namespace UnityGPT
     {
         [SerializeField] private MazeSettings settings;
         [SerializeField] private MazeGridCreator gridCreator;
+        [SerializeField] private MazeGridConfiguration gridConfiguration;
         [SerializeField] private string gridString;
         [SerializeField] private int rows;
         [SerializeField] private int columns;
 
         public MazeSettings Settings => settings;
+        public MazeGridConfiguration GridConfiguration => gridConfiguration;
 
         private void Reset()
         {
