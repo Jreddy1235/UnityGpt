@@ -70,10 +70,13 @@ namespace UnityGPT
                             break;
 
                         var spriteMapping = _visualDesigner.Settings.GetSpriteMapping(numbers[index]);
+                        var pathIndicatorTexture = _visualDesigner.Settings.GetSpriteMapping(-3).Sprite.texture;
                         if (spriteMapping != null)
                         {
                             GUI.color = spriteMapping.Color;
-                            var content = new GUIContent(spriteMapping.Sprite.texture);
+                            var content = spriteMapping.HasBackground
+                                ? GetCombinedContent(spriteMapping.Sprite.texture, pathIndicatorTexture)
+                                : new GUIContent(spriteMapping.Sprite.texture);
                             if (GUILayout.Button(content, new GUIStyle(GUI.skin.button), GUILayout.Width(width),
                                     GUILayout.Height(width)))
                             {
@@ -106,6 +109,22 @@ namespace UnityGPT
             }
         }
 
+        private GUIContent GetCombinedContent(Texture2D image1, Texture2D image2)
+        {
+            var combinedTexture = new Texture2D(image1.width, image1.height);
+            var image1Pixels = image1.GetPixels();
+            var image2Pixels = image2.GetPixels();
+            var combinedPixels = new Color[image1Pixels.Length];
+            for (int i = 0; i < image1Pixels.Length; i++)
+            {
+                combinedPixels[i] = Color.Lerp(image2Pixels[i], image1Pixels[i], image1Pixels[i].a);
+            }
+
+            combinedTexture.SetPixels(combinedPixels);
+            combinedTexture.Apply();
+            return new GUIContent(combinedTexture);
+        }
+        
         private void DoOnGridCellClicked(int row, int column)
         {
         }

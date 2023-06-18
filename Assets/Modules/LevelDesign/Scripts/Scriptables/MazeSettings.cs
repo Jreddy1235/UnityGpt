@@ -20,10 +20,12 @@ namespace UnityGPT
             [SerializeField] private int id;
             [SerializeField] private Sprite sprite;
             [SerializeField] private Color color = Color.white;
+            [SerializeField] private bool hasBackground = true;
 
             public int Id => id;
             public Sprite Sprite => sprite;
             public Color Color => color;
+            public bool HasBackground => hasBackground;
         }
     }
 }
