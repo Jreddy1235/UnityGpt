@@ -15,9 +15,35 @@ MonoBehaviour:
   gridSize: {x: 3, y: 4}
   offset: {x: 0, y: 0}
   difficulty: 0
+  avoidShortcuts: 0
   characters:
   - name: Red
     id: 215
-    amount: {x: 1, y: 1}
-  collectables: []
-  obstacles: []
+    amount:
+      min: 0
+      max: 0
+    categoryId: Characters
+  - name: Green
+    id: 315
+    amount:
+      min: 0
+      max: 0
+    categoryId: Characters
+  collectables:
+  - name: s
+    id: 4
+    amount:
+      min: 0
+      max: 0
+    categoryId: Collectables
+    pathLength:
+      min: 0
+      max: 0
+  obstacles:
+  - name: t
+    id: 5
+    amount:
+      min: 0
+      max: 0
+    categoryId: Obstacles
+    weight: 0
