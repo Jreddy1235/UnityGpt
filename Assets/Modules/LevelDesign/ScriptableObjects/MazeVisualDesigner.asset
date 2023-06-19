@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: c4f6e8a6893684051b376a4c291ee453, type: 2}
   gridCreator: {fileID: 11400000, guid: e53f59d6175c44420bc396af92eb60fa, type: 2}
-  gridString: -2,-2,-2,-2,-2,-2,-2,215,-2,-2,-2,-2
+  gridConfiguration: {fileID: 11400000, guid: d81df595dbe9245468dea8859aafd25b, type: 2}
+  gridString: -2,-2,-2,-1,215,-2,-1,-2,-2,-1,-1,11
   rows: 3
   columns: 4

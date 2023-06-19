@@ -22,11 +22,13 @@ MonoBehaviour:
     amount:
       min: 1
       max: 1
+    categoryId: Characters
   - name: Blue
     id: 225
     amount:
       min: 0
       max: 0
+    categoryId: Characters
   characterMapping:
   - collectableId: 11
     characterId: 215
@@ -36,7 +38,15 @@ MonoBehaviour:
     amount:
       min: 5
       max: 5
+    categoryId: Collectables
     pathLength:
       min: 5
       max: 5
-  obstacles: []
+  obstacles:
+  - name: t
+    id: 5
+    amount:
+      min: 0
+      max: 0
+    categoryId: Obstacles
+    weight: 0
