@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -18,6 +19,12 @@ namespace UnityGPT
         public MazeGridConfiguration GridConfiguration => gridConfiguration;
 
 
+        public void SetGridString(string value)
+        {
+            gridString = value;
+            EditorUtility.SetDirty(this);
+        }
+        
         public void GenerateGrid(Action onGridCreated)
         {
             void OnGridCreated(string gridStr, int rowCount, int columnCount)

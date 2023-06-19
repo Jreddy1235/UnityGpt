@@ -152,6 +152,7 @@ namespace UnityGPT
             var element = (BaseBoardElement) obj;
             _layout[_index] = element.Id;
             _gridString = string.Join(",", _layout.Select(x => x.ToString()).ToArray());
+            _visualDesigner.SetGridString(_gridString);
         }
     }
 }
