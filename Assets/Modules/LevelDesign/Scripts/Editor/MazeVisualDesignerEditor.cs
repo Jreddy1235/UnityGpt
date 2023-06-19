@@ -33,6 +33,7 @@ namespace UnityGPT
             if (GUILayout.Button("Clear Grid"))
             {
                 _gridString = null;
+                _visualDesigner.ResetGrid();
             }
 
             GenerateGrid();

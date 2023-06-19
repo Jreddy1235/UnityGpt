@@ -6,7 +6,6 @@ using NaughtyAttributes;
 using TypeReferences;
 using UniRx;
 using UnityEngine;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -20,8 +19,10 @@ namespace UnityGPT
 
         [SerializeField] private MazeGridConfiguration configuration;
         [SerializeField] private BehaviorTree tree;
+
         [Inherits(typeof(MazeBasePathRule))] [SerializeField]
-        private TypeReference[] pathRules;
+        private TypeReference[] pathFindingRules;
+
         [SerializeField] private MazeTreeInfo treeNodes;
 
         private GameObject _gameObject;
@@ -60,18 +61,18 @@ namespace UnityGPT
                 .Build();
         }
 
+        [Button]
+        public void DoReset()
+        {
+            tree?.Reset();
+            tree = null;
+        }
+
         [UsedImplicitly]
         [Button]
         private void CreateGrid()
         {
             CreateGrid((_, _, _) => Debug.Log("Grid Created"));
-        }
-        
-        [UsedImplicitly]
-        [Button]
-        private void DoReset()
-        {
-            tree?.Reset();
         }
 
         private string GetGridString(int[,] grid)
@@ -96,15 +97,15 @@ namespace UnityGPT
                 name = GetType().Name,
                 hideFlags = HideFlags.HideInHierarchy
             };
-            
-            var rules = new MazeBasePathRule[pathRules.Length];
-            for (var i = 0; i < pathRules.Length; i++)
+
+            var pathRules = new MazeBasePathRule[pathFindingRules.Length];
+            for (var i = 0; i < pathFindingRules.Length; i++)
             {
-                rules[i] = (MazeBasePathRule) Activator.CreateInstance(pathRules[i].Type);
+                pathRules[i] = (MazeBasePathRule) Activator.CreateInstance(pathFindingRules[i].Type);
             }
-            
+
             var gridController = _gameObject.AddComponent<MazeGridController>();
-            gridController.SetData(configuration,rules);
+            gridController.SetData(configuration, pathRules);
         }
 
         private void DestroyGameObject()

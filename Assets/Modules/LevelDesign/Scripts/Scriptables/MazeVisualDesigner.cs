@@ -15,10 +15,6 @@ namespace UnityGPT
 
         public MazeSettings Settings => settings;
 
-        private void Reset()
-        {
-            settings = Resources.Load<MazeSettings>("MazeSettings");
-        }
 
         public void GenerateGrid(Action onGridCreated)
         {
@@ -32,6 +28,17 @@ namespace UnityGPT
             
             if (gridCreator != null) 
                 gridCreator.CreateGrid(OnGridCreated);
+        }
+
+        public void ResetGrid()
+        {
+            gridCreator.DoReset();
+        }
+        
+        
+        private void Reset()
+        {
+            settings = Resources.Load<MazeSettings>("MazeSettings");
         }
     }
 }

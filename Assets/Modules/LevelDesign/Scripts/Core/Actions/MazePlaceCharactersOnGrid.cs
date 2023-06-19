@@ -8,8 +8,18 @@ namespace UnityGPT
         {
             foreach (var character in Configuration.Characters)
             {
-                Grid.SelectedTile.Value = character.Id; 
+                ActionRule.Apply();
+                var random = character.Amount.Min;
+                for (var i = 0; i < random; i++)
+                {
+                    if (Grid.SelectedTile == null) continue;
+
+                    Grid.SelectedTile.Value = character.Id;
+                    Grid.SelectedTile.HasCharacter = true;
+                    Grid.Paths.Add(Grid.SelectedTile, new() {StartTile = Grid.SelectedTile});
+                }
             }
+
             return base.OnUpdate();
         }
     }

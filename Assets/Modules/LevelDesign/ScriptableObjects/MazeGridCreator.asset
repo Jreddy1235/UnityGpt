@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: MazeGridCreator
   m_EditorClassIdentifier: 
   configuration: {fileID: 11400000, guid: d81df595dbe9245468dea8859aafd25b, type: 2}
-  pathRules: []
+  pathFindingRules:
+  - GuidAssignmentFailed: 0
+    GUID: 485d19b9f854485294143216626c5613
+    _typeNameAndAssembly: UnityGPT.MazeIsTileAvailable, Assembly-CSharp
+    _suppressLogs: 0
   treeNodes:
     parentNode:
       GuidAssignmentFailed: 0
@@ -21,14 +25,29 @@ MonoBehaviour:
       _typeNameAndAssembly: CleverCrow.Fluid.BTs.TaskParents.Composites.Sequence,
         Fluid.BehaviorTree
       _suppressLogs: 0
+    actionRule:
+      GuidAssignmentFailed: 0
+      GUID: 
+      _typeNameAndAssembly: 
+      _suppressLogs: 0
     childNodes:
     - parentNode:
         GuidAssignmentFailed: 0
         GUID: 1940e0bae27b458299d7398db8e186c4
         _typeNameAndAssembly: UnityGPT.MazeCreateEmptyGrid, Assembly-CSharp
         _suppressLogs: 0
+      actionRule:
+        GuidAssignmentFailed: 0
+        GUID: 
+        _typeNameAndAssembly: 
+        _suppressLogs: 0
       childNodes: []
     - parentNode:
+        GuidAssignmentFailed: 0
+        GUID: 8e9b756e99d44bdd8b074c11293a88cc
+        _typeNameAndAssembly: UnityGPT.MazePlaceCharactersOnGrid, Assembly-CSharp
+        _suppressLogs: 0
+      actionRule:
         GuidAssignmentFailed: 0
         GUID: a773bae5c13d4cef89f9bd6077d9651c
         _typeNameAndAssembly: UnityGPT.MazeSelectRandomTile, Assembly-CSharp
@@ -36,7 +55,12 @@ MonoBehaviour:
       childNodes: []
     - parentNode:
         GuidAssignmentFailed: 0
-        GUID: 8e9b756e99d44bdd8b074c11293a88cc
-        _typeNameAndAssembly: UnityGPT.MazePlaceCharactersOnGrid, Assembly-CSharp
+        GUID: 0fd22f79d13148ed9f2f3f6c7955b7ad
+        _typeNameAndAssembly: UnityGPT.MazeGeneratePathOnGrid, Assembly-CSharp
+        _suppressLogs: 0
+      actionRule:
+        GuidAssignmentFailed: 0
+        GUID: 
+        _typeNameAndAssembly: 
         _suppressLogs: 0
       childNodes: []

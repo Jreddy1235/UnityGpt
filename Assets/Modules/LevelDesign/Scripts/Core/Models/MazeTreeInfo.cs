@@ -12,6 +12,9 @@ namespace UnityGPT
         [Inherits(typeof(ITask))] [SerializeField]
         private TypeReference parentNode;
 
+        [Inherits(typeof(MazeBaseRule), ExcludeTypes = new[] {typeof(MazeBasePathRule)})] [SerializeField]
+        private TypeReference actionRule;
+
         [SerializeField] private MazeTreeInfo[] childNodes;
 
         public ITask GetNodes(GameObject owner)
@@ -35,6 +38,9 @@ namespace UnityGPT
                 nodes = (ITask) Activator.CreateInstance(type);
             }
 
+            if (nodes is MazeBaseAction action && actionRule.Type != null)
+                action.ActionRule = (MazeBaseRule) Activator.CreateInstance(actionRule.Type);
+            
             nodes.Owner = owner;
             return nodes;
         }

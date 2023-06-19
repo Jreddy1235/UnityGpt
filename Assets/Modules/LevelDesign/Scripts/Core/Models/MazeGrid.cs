@@ -4,7 +4,7 @@ namespace UnityGPT
 {
     public class MazeGrid
     {
-        public Dictionary<int, Stack<MazeTile>> Paths { get; } = new();
+        public Dictionary<MazeTile, MazePath> Paths { get; } = new();
         public MazeTile[,] Grid { get; private set; }
         public MazeTile this[int i, int j] => Grid[i, j];
         public MazeTile SelectedTile { get; set; }
@@ -26,6 +26,22 @@ namespace UnityGPT
                     };
                 }
             }
+            
+            SetNeighbours();
+        }
+
+        private void SetNeighbours()
+        {
+            for (var i = 0; i < Grid.GetLength(0); i++)
+            {
+                for (var j = 0; j < Grid.GetLength(1); j++)
+                {
+                    Grid[i, j].Neighbors.LeftTile = j > 0 ? Grid[i, j - 1] : null;
+                    Grid[i, j].Neighbors.RightTile = j < Grid.GetLength(1) - 1 ? Grid[i, j + 1] : null;
+                    Grid[i, j].Neighbors.TopTile = i > 0 ? Grid[i - 1, j] : null;
+                    Grid[i, j].Neighbors.BottomTile = i < Grid.GetLength(0) - 1 ? Grid[i + 1, j] : null;
+                }
+            }
         }
 
         public int[,] ToIntArray()
@@ -42,7 +58,7 @@ namespace UnityGPT
             return grid;
         }
         
-        public List<MazeTile> ToList()
+        public IEnumerable<MazeTile> ToList()
         {
             var tiles = new List<MazeTile>();
             for (var i = 0; i < RowCount; i++)

@@ -1,18 +1,14 @@
-using System.Collections.Generic;
-
 namespace UnityGPT
 {
-    public abstract class MazeBasePathRule
+    public abstract class MazeBasePathRule : MazeBaseRule
     {
-        protected MazeGrid Grid { get; private set; }
-        
-        public void SetData(MazeGrid grid, int characterId)
+        public virtual bool Apply(MazeTile tile)
         {
-            Grid = grid;
-            if(!grid.Paths.ContainsKey(characterId))
-                grid.Paths.Add(characterId, new Stack<MazeTile>());
+            return true;
         }
 
-        public abstract void Apply();
+        public override void Apply()
+        {
+        }
     }
 }

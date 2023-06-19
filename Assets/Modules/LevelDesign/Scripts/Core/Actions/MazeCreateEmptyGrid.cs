@@ -4,8 +4,6 @@ namespace UnityGPT
 {
     public class MazeCreateEmptyGrid : MazeBaseAction
     {
-        private const int NoTileId = -2;
-
         protected override TaskStatus OnUpdate()
         {
             var gridSize = Configuration.GridSize;
@@ -14,12 +12,12 @@ namespace UnityGPT
             {
                 for (var y = 0; y < gridSize.y; y++)
                 {
-                    grid[x, y] = NoTileId;
+                    grid[x, y] = MazeConstants.NoTileId;
                 }
             }
+
             GridController.SetGrid(grid);
             return TaskStatus.Success;
         }
-
     }
 }

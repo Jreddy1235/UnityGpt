@@ -11,6 +11,7 @@ namespace UnityGPT
         [SerializeField] private Difficulty difficulty;
         [SerializeField] private bool avoidShortcuts;
         [SerializeField] private Character[] characters;
+        [SerializeField] private CharacterMapping[] characterMapping;
         [SerializeField] private Collectable[] collectables;
         [SerializeField] private Obstacle[] obstacles;
 
@@ -21,6 +22,17 @@ namespace UnityGPT
         public Collectable[] Collectables => collectables;
         public Obstacle[] Obstacles => obstacles;
         public bool AvoidShortcuts => avoidShortcuts;
+        
+        public int GetMappedCharacter(int collectableId)
+        {
+            foreach (var mapping in characterMapping)
+            {
+                if (mapping.CollectableId == collectableId)
+                    return mapping.CharacterId;
+            }
+
+            return -1;
+        }
     }
 
     public enum Difficulty
@@ -40,6 +52,16 @@ namespace UnityGPT
         public string Name => name;
         public int Id => id;
         public Range Amount => amount;
+    }
+    
+    [Serializable]
+    public class CharacterMapping
+    {
+        [SerializeField] private int collectableId;
+        [SerializeField] private int characterId;
+
+        public int CollectableId => collectableId;
+        public int CharacterId => characterId;
     }
 
     [Serializable]
