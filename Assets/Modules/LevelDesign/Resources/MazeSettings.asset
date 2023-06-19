@@ -29,11 +29,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: bc6e3383a3a5a4a8c9012a8860b8136b, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
-  - id: 1
+  - id: -1
     sprite: {fileID: 21300000, guid: 9b778dbbc552d4a3288df39b81a54c8f, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
-  - id: 315
+  - id: 225
     sprite: {fileID: 21300000, guid: 338fe65ab75894f00878c9938260acf5, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
+  - id: -2
+    sprite: {fileID: 21300000, guid: 67f2a2d5301834cd39dc46c6ac551578, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    hasBackground: 0
