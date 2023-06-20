@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CleverCrow.Fluid.BTs.Tasks;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace UnityGPT
 {
@@ -60,7 +61,7 @@ namespace UnityGPT
                 return true;
 
             currentTile.IsFrozen = true;
-            var neighbors = currentTile.Neighbors.ToArray();
+            var neighbors = currentTile.Neighbors.ToArray().OrderBy(t => Guid.NewGuid());
             foreach (var neighbor in neighbors)
             {
                 if (neighbor == null || neighbor.IsFrozen) continue;
