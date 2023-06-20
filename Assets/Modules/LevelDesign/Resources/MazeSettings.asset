@@ -22,11 +22,11 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 0
   - id: 215
-    sprite: {fileID: 21300000, guid: 9b2bc6413d3764de5bd3c79878974a53, type: 3}
+    sprite: {fileID: 21300000, guid: a2519de05914b4b3daa365e293b9ab46, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
   - id: 11
-    sprite: {fileID: 21300000, guid: bc6e3383a3a5a4a8c9012a8860b8136b, type: 3}
+    sprite: {fileID: 21300000, guid: 60334621de91848f0b23e20f46a015db, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
   - id: -1

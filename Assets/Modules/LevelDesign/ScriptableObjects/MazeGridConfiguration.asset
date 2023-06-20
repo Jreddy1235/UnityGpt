@@ -50,3 +50,16 @@ MonoBehaviour:
       max: 0
     categoryId: Obstacles
     weight: 0
+  extraElements:
+  - name: Empty Tile
+    id: -1
+    amount:
+      min: 0
+      max: 0
+    categoryId: Tiles
+  - name: No Tile
+    id: -2
+    amount:
+      min: 0
+      max: 0
+    categoryId: Tiles

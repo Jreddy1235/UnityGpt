@@ -16,6 +16,7 @@ namespace UnityGPT
         [SerializeField] private CharacterMapping[] characterMapping;
         [SerializeField] private Collectable[] collectables;
         [SerializeField] private Obstacle[] obstacles;
+        [SerializeField] private BaseBoardElement[] extraElements;
 
         public Vector2Int GridSize => gridSize;
         public Vector2Int Offset => offset;
@@ -23,6 +24,7 @@ namespace UnityGPT
         public Character[] Characters => characters;
         public Collectable[] Collectables => collectables;
         public Obstacle[] Obstacles => obstacles;
+        public BaseBoardElement[] ExtraElements => extraElements;
         public bool AvoidShortcuts => avoidShortcuts;
         
         public int GetMappedCharacter(int collectableId)
@@ -37,7 +39,7 @@ namespace UnityGPT
         }
 
         public List<BaseBoardElement> BoardElements => characters.Concat<BaseBoardElement>(collectables)
-            .Concat(obstacles).Concat(characters).ToList();
+            .Concat(obstacles).Concat(characters).Concat(extraElements).ToList();
     }
 
     public enum Difficulty
