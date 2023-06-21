@@ -57,11 +57,12 @@ namespace UnityGPT
                 return false;
             }
 
-            if (path.Count >= pathLength)
+            if (path.Count >= pathLength && Grid.BindingTiles.HasValue())
                 return true;
 
             currentTile.IsFrozen = true;
-            var neighbors = currentTile.Neighbors.ToArray().OrderBy(t => Guid.NewGuid());
+            Grid.SelectedTile = currentTile;
+            var neighbors = currentTile.Neighbors.ToArray().OrderBy(_ => Guid.NewGuid());
             foreach (var neighbor in neighbors)
             {
                 if (neighbor == null || neighbor.IsFrozen) continue;

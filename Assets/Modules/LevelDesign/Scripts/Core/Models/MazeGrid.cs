@@ -8,6 +8,7 @@ namespace UnityGPT
         public MazeTile[,] Grid { get; private set; }
         public MazeTile this[int i, int j] => Grid[i, j];
         public MazeTile SelectedTile { get; set; }
+        public MazeGridBindingTiles BindingTiles { get; set; } = new();
         public int RowCount => Grid.GetLength(0);
         public int ColumnCount => Grid.GetLength(1);
 

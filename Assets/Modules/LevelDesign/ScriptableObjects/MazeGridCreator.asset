@@ -18,6 +18,10 @@ MonoBehaviour:
     GUID: 485d19b9f854485294143216626c5613
     _typeNameAndAssembly: UnityGPT.MazeIsTileAvailable, Assembly-CSharp
     _suppressLogs: 0
+  - GuidAssignmentFailed: 0
+    GUID: af4040f9d40c4e98936209db987a26e7
+    _typeNameAndAssembly: UnityGPT.MazeExpandPathCoverage, Assembly-CSharp
+    _suppressLogs: 0
   treeNodes:
     parentNode:
       GuidAssignmentFailed: 0
