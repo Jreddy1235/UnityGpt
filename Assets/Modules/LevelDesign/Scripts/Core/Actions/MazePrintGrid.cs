@@ -19,7 +19,7 @@ namespace UnityGPT
                 }
             }
 
-            Debug.LogError(output);
+            Debug.Log(output);
 
             return base.OnUpdate();
         }

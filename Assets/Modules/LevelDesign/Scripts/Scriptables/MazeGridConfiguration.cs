@@ -11,7 +11,7 @@ namespace UnityGPT
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private Vector2Int offset;
         [SerializeField] private Difficulty difficulty;
-        [SerializeField] private bool avoidShortcuts;
+        [SerializeField] private MockPathInfo mockPathInfo;
         [SerializeField] private Character[] characters;
         [SerializeField] private CharacterMapping[] characterMapping;
         [SerializeField] private Collectable[] collectables;
@@ -25,8 +25,8 @@ namespace UnityGPT
         public Collectable[] Collectables => collectables;
         public Obstacle[] Obstacles => obstacles;
         public BaseBoardElement[] ExtraElements => extraElements;
-        public bool AvoidShortcuts => avoidShortcuts;
-        
+        public MockPathInfo MockPathInfo => mockPathInfo;
+
         public int GetMappedCharacter(int collectableId)
         {
             foreach (var mapping in characterMapping)
@@ -53,7 +53,7 @@ namespace UnityGPT
     public class Character : BaseBoardElement
     {
     }
-    
+
     [Serializable]
     public class CharacterMapping
     {
@@ -102,5 +102,15 @@ namespace UnityGPT
         public int Id => id;
         public Range Amount => amount;
         public string CategoryId => categoryId;
+    }
+
+    [Serializable]
+    public class MockPathInfo
+    {
+        [SerializeField] [Range(0, 1)] private float frequency;
+        [SerializeField] [Range(0, 1)] private float exitChances;
+
+        public float Frequency => frequency;
+        public float ExitChances => exitChances;
     }
 }

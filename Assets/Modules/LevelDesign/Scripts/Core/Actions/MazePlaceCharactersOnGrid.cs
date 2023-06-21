@@ -16,7 +16,7 @@ namespace UnityGPT
 
                     Grid.SelectedTile.Value = character.Id;
                     Grid.SelectedTile.HasCharacter = true;
-                    Grid.Paths.Add(Grid.SelectedTile, new() {StartTile = Grid.SelectedTile});
+                    Grid.PathsMapping.Add(Grid.SelectedTile, new() {StartTile = Grid.SelectedTile});
                 }
             }
 

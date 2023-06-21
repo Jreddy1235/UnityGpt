@@ -76,7 +76,6 @@ namespace UnityGPT
             {
                 _nearestTile = null;
                 _currentDistance = float.MaxValue;
-                Debug.LogError("Bind => "+currentTile.RowIndex + ", " + currentTile.ColIndex);
                 Grid.BindingTiles.Bind(currentTile, _bindingTiles);
                 return true;
             }

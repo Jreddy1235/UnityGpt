@@ -15,7 +15,9 @@ MonoBehaviour:
   gridSize: {x: 6, y: 6}
   offset: {x: 0, y: 0}
   difficulty: 0
-  avoidShortcuts: 0
+  mockPathInfo:
+    frequency: 0.7
+    exitChances: 0.2
   characters:
   - name: Red
     id: 215

@@ -21,7 +21,6 @@ namespace UnityGPT
                     if (!Grid.BindingTiles.HasValue())
                     {
                         Grid.BindingTiles.Reset();
-                        Debug.LogError("Iteration : " + i);
                     }
 
                     var startTile = GetPathStartTile(collectable.Id);
@@ -29,7 +28,7 @@ namespace UnityGPT
                         continue;
                     var endTile = path.Peek();
                     endTile.Value = collectable.Id;
-                    Grid.Paths[startTile].Routes.Add(endTile, path);
+                    Grid.PathsMapping[startTile].Paths.Add(endTile, path);
                     break;
                 }
             }
@@ -41,7 +40,7 @@ namespace UnityGPT
         {
             var characterId = Configuration.GetMappedCharacter(collectableId);
             if (characterId == -1) return null;
-            var characterTiles = Grid.Paths.Where(t => t.Key.Value == characterId).Select(t => t.Key).ToList();
+            var characterTiles = Grid.PathsMapping.Where(t => t.Key.Value == characterId).Select(t => t.Key).ToList();
             return characterTiles.Count == 0 ? null : characterTiles[Random.Range(0, characterTiles.Count)];
         }
 
@@ -51,8 +50,8 @@ namespace UnityGPT
             path.Push(startTile);
             var isPathGenerated = GeneratePath(path, pathLength);
             if (isPathGenerated)
-                MarkPathTiles(path);
-            UnFreezeTiles();
+                path.MarkPathTiles();
+            Grid.ToList().UnFreezeTiles();
             return isPathGenerated;
         }
 
@@ -65,7 +64,6 @@ namespace UnityGPT
                 return false;
             }
 
-            Debug.LogError(currentTile.RowIndex + ", " + currentTile.ColIndex);
             if (IsPathCompleted(path, pathLength)) return true;
 
             currentTile.IsFrozen = true;
@@ -97,23 +95,6 @@ namespace UnityGPT
         private bool IsPathCompleted(ICollection path, int pathLength)
         {
             return path.Count >= pathLength && Grid.BindingTiles.HasValue();
-        }
-
-        private void MarkPathTiles(IEnumerable<MazeTile> path)
-        {
-            foreach (var tile in path)
-            {
-                if (tile.Value == MazeConstants.NoTileId)
-                    tile.Value = MazeConstants.TileOnlyId;
-            }
-        }
-
-        private void UnFreezeTiles()
-        {
-            foreach (var tile in Grid.ToList())
-            {
-                tile.IsFrozen = false;
-            }
         }
     }
 }
