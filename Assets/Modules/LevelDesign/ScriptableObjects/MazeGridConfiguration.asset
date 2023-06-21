@@ -36,8 +36,8 @@ MonoBehaviour:
   - name: Red
     id: 11
     amount:
-      min: 5
-      max: 5
+      min: 10
+      max: 10
     categoryId: Collectables
     pathLength:
       min: 9

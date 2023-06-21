@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CleverCrow.Fluid.BTs.Tasks;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace UnityGPT
@@ -16,6 +18,12 @@ namespace UnityGPT
                 var pathLength = collectable.PathLength.Min + 1;
                 for (var i = 0; i < random; i++)
                 {
+                    if (!Grid.BindingTiles.HasValue())
+                    {
+                        Grid.BindingTiles.Reset();
+                        Debug.LogError("Iteration : " + i);
+                    }
+
                     var startTile = GetPathStartTile(collectable.Id);
                     if (startTile == null || !GeneratePath(startTile, pathLength, out var path))
                         continue;
@@ -53,12 +61,12 @@ namespace UnityGPT
             var currentTile = path.Peek();
             if (currentTile == null || GridController.PathFindingRules.Any(rule => !rule.Apply(currentTile)))
             {
-                path.Pop();
+                RevertTileInPath(path, currentTile);
                 return false;
             }
 
-            if (path.Count >= pathLength && Grid.BindingTiles.HasValue())
-                return true;
+            Debug.LogError(currentTile.RowIndex + ", " + currentTile.ColIndex);
+            if (IsPathCompleted(path, pathLength)) return true;
 
             currentTile.IsFrozen = true;
             Grid.SelectedTile = currentTile;
@@ -74,11 +82,21 @@ namespace UnityGPT
                 neighbor.IsFrozen = false;
             }
 
-            if (path.Count >= pathLength)
-                return true;
+            if (IsPathCompleted(path, pathLength)) return true;
 
-            path.Pop();
+            RevertTileInPath(path, currentTile);
             return false;
+        }
+
+        private void RevertTileInPath(Stack<MazeTile> path, MazeTile currentTile)
+        {
+            path.Pop();
+            Grid.BindingTiles.Reset(currentTile);
+        }
+
+        private bool IsPathCompleted(ICollection path, int pathLength)
+        {
+            return path.Count >= pathLength && Grid.BindingTiles.HasValue();
         }
 
         private void MarkPathTiles(IEnumerable<MazeTile> path)

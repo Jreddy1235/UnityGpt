@@ -53,7 +53,7 @@ namespace UnityGPT
             return CheckPathCoverage(tile);
         }
 
-        private bool CheckPathCoverage(MazeTile currenTile)
+        private bool CheckPathCoverage(MazeTile currentTile)
         {
             float distance;
             if (_nearestTile == null)
@@ -62,7 +62,7 @@ namespace UnityGPT
                 {
                     if (Grid.BindingTiles.HasValue(tile, _bindingTiles)) continue;
 
-                    distance = GetDistance(tile, currenTile);
+                    distance = GetDistance(tile, currentTile);
                     if (!(distance < _currentDistance)) continue;
                     _currentDistance = distance;
                     _nearestTile = tile;
@@ -71,12 +71,13 @@ namespace UnityGPT
 
             if (_nearestTile == null) return true;
 
-            distance = GetDistance(_nearestTile, currenTile);
+            distance = GetDistance(_nearestTile, currentTile);
             if (distance == 0)
             {
                 _nearestTile = null;
                 _currentDistance = float.MaxValue;
-                Grid.BindingTiles.Bind(currenTile, _bindingTiles);
+                Debug.LogError("Bind => "+currentTile.RowIndex + ", " + currentTile.ColIndex);
+                Grid.BindingTiles.Bind(currentTile, _bindingTiles);
                 return true;
             }
 

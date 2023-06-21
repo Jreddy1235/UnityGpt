@@ -68,3 +68,14 @@ MonoBehaviour:
         _typeNameAndAssembly: 
         _suppressLogs: 0
       childNodes: []
+    - parentNode:
+        GuidAssignmentFailed: 0
+        GUID: 1953c30d2c0646639e8cafa03239bb63
+        _typeNameAndAssembly: UnityGPT.MazePrintGrid, Assembly-CSharp
+        _suppressLogs: 0
+      actionRule:
+        GuidAssignmentFailed: 0
+        GUID: 
+        _typeNameAndAssembly: 
+        _suppressLogs: 0
+      childNodes: []

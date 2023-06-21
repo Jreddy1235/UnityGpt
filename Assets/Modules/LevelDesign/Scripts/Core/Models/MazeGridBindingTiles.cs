@@ -32,5 +32,22 @@ namespace UnityGPT
             else if (SecondCornerTile == null && bindingTiles.SecondCornerTile == tile)
                 SecondCornerTile = tile;
         }
+
+        public void Reset()
+        {
+            SideTile = null;
+            FirstCornerTile = null;
+            SecondCornerTile = null;
+        }
+
+        public void Reset(MazeTile tile)
+        {
+            if (tile == SideTile)
+                SideTile = null;
+            else if (tile == FirstCornerTile)
+                FirstCornerTile = null;
+            else if (tile == SecondCornerTile)
+                SecondCornerTile = null;
+        }
     }
 }
