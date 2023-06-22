@@ -75,9 +75,9 @@ namespace UnityGPT
     [Serializable]
     public class Obstacle : BaseBoardElement
     {
-        [SerializeField] private int weight;
+        [SerializeField] [Range(1, 10)] private float weight;
 
-        public int Weight => weight;
+        public float Weight => weight;
     }
 
     [Serializable]

@@ -90,3 +90,14 @@ MonoBehaviour:
         _typeNameAndAssembly: 
         _suppressLogs: 0
       childNodes: []
+    - parentNode:
+        GuidAssignmentFailed: 0
+        GUID: 3681f847c384740ce881bbbcc38d0f61
+        _typeNameAndAssembly: UnityGPT.MazePlaceObstaclesOnGrid, Assembly-CSharp
+        _suppressLogs: 0
+      actionRule:
+        GuidAssignmentFailed: 0
+        GUID: 
+        _typeNameAndAssembly: 
+        _suppressLogs: 0
+      childNodes: []
