@@ -30,9 +30,9 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
   - id: -1
-    sprite: {fileID: 21300000, guid: 9b778dbbc552d4a3288df39b81a54c8f, type: 3}
+    sprite: {fileID: 21300000, guid: 4e122932290c4458eb51758da93f7962, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
-    hasBackground: 1
+    hasBackground: 0
   - id: 225
     sprite: {fileID: 21300000, guid: 338fe65ab75894f00878c9938260acf5, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
