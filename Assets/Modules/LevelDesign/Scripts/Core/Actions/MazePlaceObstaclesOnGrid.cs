@@ -21,7 +21,6 @@ namespace UnityGPT
 
                     var tile = walkableTiles[Random.Range(0, walkableTiles.Count)];
                     tile.Value = obstacle.Id;
-                    tile.HasObstacle = true;
                     walkableTiles.Remove(tile);
                 }
             }

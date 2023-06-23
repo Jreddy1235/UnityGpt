@@ -10,7 +10,6 @@ namespace UnityGPT
         public bool HasCharacter { get; set; }
         public bool HasNoTile { get; set; }
         public bool IsFrozen { get; set; }
-        public bool HasObstacle { get; set; }
         public bool IsAvailable => !HasNoTile && !IsFrozen && Value < MazeConstants.TileOnlyId;
         public Neighbours Neighbors { get; set; } = new();
 
