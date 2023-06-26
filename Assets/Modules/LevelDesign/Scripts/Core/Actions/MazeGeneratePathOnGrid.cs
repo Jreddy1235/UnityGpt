@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CleverCrow.Fluid.BTs.Tasks;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace UnityGPT
@@ -18,11 +16,6 @@ namespace UnityGPT
                 var pathLength = collectable.PathLength.Min + 1;
                 for (var i = 0; i < random; i++)
                 {
-                    if (!Grid.BindingTiles.HasValue())
-                    {
-                        Grid.BindingTiles.Reset();
-                    }
-
                     var startTile = GetPathStartTile(collectable.Id);
                     if (startTile == null || !GeneratePath(startTile, pathLength, out var path))
                         continue;
@@ -58,13 +51,13 @@ namespace UnityGPT
         private bool GeneratePath(Stack<MazeTile> path, int pathLength)
         {
             var currentTile = path.Peek();
-            if (currentTile == null || GridController.PathFindingRules.Any(rule => !rule.Apply(currentTile)))
+            if (currentTile == null || Rules.Any(rule => !rule.Apply(currentTile)))
             {
-                RevertTileInPath(path, currentTile);
+                path.Pop();
                 return false;
             }
 
-            if (IsPathCompleted(path, pathLength)) return true;
+            if (path.Count >= pathLength) return true;
 
             currentTile.IsFrozen = true;
             Grid.SelectedTile = currentTile;
@@ -80,21 +73,10 @@ namespace UnityGPT
                 neighbor.IsFrozen = false;
             }
 
-            if (IsPathCompleted(path, pathLength)) return true;
+            if (path.Count >= pathLength) return true;
 
-            RevertTileInPath(path, currentTile);
-            return false;
-        }
-
-        private void RevertTileInPath(Stack<MazeTile> path, MazeTile currentTile)
-        {
             path.Pop();
-            Grid.BindingTiles.Reset(currentTile);
-        }
-
-        private bool IsPathCompleted(ICollection path, int pathLength)
-        {
-            return path.Count >= pathLength && Grid.BindingTiles.HasValue();
+            return false;
         }
     }
 }

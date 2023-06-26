@@ -1,18 +1,17 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace UnityGPT
 {
-    public class MazeExpandPathCoverage : MazeBasePathRule
+    public class MazePathCoverageRule : MazeBaseRule
     {
         private readonly MazeGridBindingTiles _bindingTiles = new();
 
         private MazeTile _nearestTile;
         private float _currentDistance = float.MaxValue;
 
-        public override void OnInit()
+        protected override void OnInit()
         {
             base.OnInit();
             var edgePoints = new List<MazeTile>();
@@ -28,23 +27,45 @@ namespace UnityGPT
             var sideTile = _bindingTiles.SideTile = edgePoints[Random.Range(0, edgePoints.Count)];
             if (sideTile.RowIndex == 0)
             {
+                CheckForPreBinding(0, 1, 0, Grid.ColumnCount);
                 _bindingTiles.FirstCornerTile = Grid[Grid.RowCount - 1, 0];
                 _bindingTiles.SecondCornerTile = Grid[Grid.RowCount - 1, Grid.ColumnCount - 1];
             }
             else if (sideTile.RowIndex == Grid.RowCount - 1)
             {
+                CheckForPreBinding(Grid.RowCount - 1, Grid.RowCount, 0, Grid.ColumnCount);
                 _bindingTiles.FirstCornerTile = Grid[0, 0];
                 _bindingTiles.SecondCornerTile = Grid[0, Grid.ColumnCount - 1];
             }
             else if (sideTile.ColIndex == 0)
             {
+                CheckForPreBinding(0, Grid.RowCount - 1, 0, 1);
                 _bindingTiles.FirstCornerTile = Grid[Grid.RowCount - 1, Grid.ColumnCount - 1];
                 _bindingTiles.SecondCornerTile = Grid[0, Grid.ColumnCount - 1];
             }
             else if (sideTile.ColIndex == Grid.ColumnCount - 1)
             {
+                CheckForPreBinding(0, Grid.RowCount - 1, Grid.ColumnCount - 1, Grid.ColumnCount);
                 _bindingTiles.FirstCornerTile = Grid[Grid.RowCount - 1, 0];
                 _bindingTiles.SecondCornerTile = Grid[0, 0];
+            }
+        }
+
+        public override void Reset()
+        {
+            _nearestTile = null;
+            _currentDistance = float.MaxValue;
+        }
+
+        private void CheckForPreBinding(int rowStart, int rowEnd, int colStart, int colEnd)
+        {
+            for (var i = rowStart; i < rowEnd; i++)
+            for (var j = colStart; j < colEnd; j++)
+            {
+                if (Grid[i, j].IsAvailable || _bindingTiles.SideTile == Grid[i, j]) continue;
+                _bindingTiles.SideTile = Grid[i, j];
+                Grid.BindingTiles.Bind(Grid[i, j], _bindingTiles);
+                return;
             }
         }
 
@@ -80,13 +101,13 @@ namespace UnityGPT
                 return true;
             }
 
-            if (distance <= _currentDistance)
+            if (distance > _currentDistance)
             {
-                _currentDistance = distance;
-                return true;
+                return false;
             }
 
-            return false;
+            _currentDistance = distance;
+            return true;
         }
 
         private float GetDistance(MazeTile tile, MazeTile otherTile)

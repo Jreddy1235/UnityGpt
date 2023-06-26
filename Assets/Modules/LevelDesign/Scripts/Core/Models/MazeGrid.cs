@@ -6,6 +6,7 @@ namespace UnityGPT
     {
         public Dictionary<MazeTile, MazePathInfo> PathsMapping { get; } = new();
         public List<Stack<MazeTile>> MockPaths { get; } = new();
+        public List<Stack<MazeTile>> CoveragePaths { get; } = new();
         public MazeTile[,] Grid { get; private set; }
         public MazeTile this[int i, int j] => Grid[i, j];
         public MazeTile SelectedTile { get; set; }

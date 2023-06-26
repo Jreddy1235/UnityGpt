@@ -1,5 +1,4 @@
 using System;
-using CleverCrow.Fluid.BTs.TaskParents.Composites;
 using CleverCrow.Fluid.BTs.Tasks;
 using TypeReferences;
 using UnityEngine;
@@ -10,37 +9,27 @@ namespace UnityGPT
     public class MazeTreeInfo
     {
         [Inherits(typeof(ITask))] [SerializeField]
-        private TypeReference parentNode;
+        private TypeReference action;
 
-        [Inherits(typeof(MazeBaseRule), ExcludeTypes = new[] {typeof(MazeBasePathRule)})] [SerializeField]
-        private TypeReference actionRule;
-
-        [SerializeField] private MazeTreeInfo[] childNodes;
+        [Inherits(typeof(MazeBaseRule))] [SerializeField]
+        private TypeReference[] rules;
 
         public ITask GetNodes(GameObject owner)
         {
-            if (parentNode == null) return null;
+            if (action == null) return null;
 
-            ITask nodes;
-            var type = parentNode.Type;
-            if (type.IsSubclassOf(typeof(CompositeBase)))
+            var nodes = (ITask) Activator.CreateInstance(action.Type);
+
+            if (nodes is MazeBaseAction baseAction && rules?.Length > 0)
             {
-                var parent = (CompositeBase) Activator.CreateInstance(type);
-                foreach (var child in childNodes)
+                baseAction.Rules = new MazeBaseRule[rules.Length];
+                var i = 0;
+                foreach (var rule in rules)
                 {
-                    parent.AddChild(child.GetNodes(owner));
+                    baseAction.Rules[i++] = (MazeBaseRule) Activator.CreateInstance(rule.Type);
                 }
-
-                nodes = parent;
-            }
-            else
-            {
-                nodes = (ITask) Activator.CreateInstance(type);
             }
 
-            if (nodes is MazeBaseAction action && actionRule.Type != null)
-                action.ActionRule = (MazeBaseRule) Activator.CreateInstance(actionRule.Type);
-            
             nodes.Owner = owner;
             return nodes;
         }

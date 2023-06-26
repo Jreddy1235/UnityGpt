@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace UnityGPT
 {
     public class MazeGridBindingTiles
@@ -5,6 +7,9 @@ namespace UnityGPT
         public MazeTile SideTile { get; set; }
         public MazeTile FirstCornerTile { get; set; }
         public MazeTile SecondCornerTile { get; set; }
+
+        public int Value => (SideTile != null ? 1 : 0) + (FirstCornerTile != null ? 1 : 0) +
+                            (SecondCornerTile != null ? 1 : 0);
 
         public MazeTile[] ToArray()
         {
@@ -16,8 +21,9 @@ namespace UnityGPT
             return SideTile != null && FirstCornerTile != null && SecondCornerTile != null;
         }
 
-        public bool HasValue(MazeTile tile, MazeGridBindingTiles bindingTiles)
+        public bool HasValue(MazeTile tile, MazeGridBindingTiles bindingTiles = null)
         {
+            bindingTiles ??= this;
             return (SideTile != null && bindingTiles.SideTile == tile)
                    || (FirstCornerTile != null && bindingTiles.FirstCornerTile == tile)
                    || (SecondCornerTile != null && bindingTiles.SecondCornerTile == tile);

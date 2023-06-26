@@ -5,8 +5,8 @@ namespace UnityGPT
 {
     public class MazeBaseAction : ActionBase
     {
-        public MazeBaseRule ActionRule { get; set; }
-
+        public MazeBaseRule[] Rules { get; set; }
+        public MazeBaseRule FirstRule => Rules.Length > 0 ? Rules[0] : null;
         protected MazeGridController GridController { get; private set; }
         protected MazeGrid Grid => GridController.Grid;
         protected MazeGridConfiguration Configuration => GridController.Configuration;
@@ -16,8 +16,13 @@ namespace UnityGPT
             base.OnInit();
             if (Owner != null)
                 GridController = Owner.GetComponent<MazeGridController>();
+
+            if (!(Rules?.Length > 0)) return;
             
-            ActionRule?.SetData(Grid);
+            foreach (var rule in Rules)
+            {
+                rule.SetData(Grid);
+            }
         }
 
         protected override TaskStatus OnUpdate()

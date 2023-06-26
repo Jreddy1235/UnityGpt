@@ -20,10 +20,7 @@ namespace UnityGPT
         [SerializeField] private MazeGridConfiguration configuration;
         [SerializeField] private BehaviorTree tree;
 
-        [Inherits(typeof(MazeBasePathRule))] [SerializeField]
-        private TypeReference[] pathFindingRules;
-
-        [SerializeField] private MazeTreeInfo treeNodes;
+        [SerializeField] private MazeTreeInfo[] treeNodes;
 
         private GameObject _gameObject;
         private bool _isEnded;
@@ -53,12 +50,13 @@ namespace UnityGPT
                 return TaskStatus.Success;
             }
 
-            tree = new BehaviorTreeBuilder(_gameObject)
-                .Sequence()
-                .AddNode(treeNodes.GetNodes(_gameObject))
-                .Do(OnGridCreationDone)
-                .End()
-                .Build();
+            var treeBuilder = new BehaviorTreeBuilder(_gameObject).Sequence();
+            foreach (var treeNode in treeNodes)
+            {
+                treeBuilder.AddNode(treeNode.GetNodes(_gameObject));
+            }
+
+            tree = treeBuilder.Do(OnGridCreationDone).End().Build();
         }
 
         [Button]
@@ -98,14 +96,8 @@ namespace UnityGPT
                 hideFlags = HideFlags.HideInHierarchy
             };
 
-            var pathRules = new MazeBasePathRule[pathFindingRules.Length];
-            for (var i = 0; i < pathFindingRules.Length; i++)
-            {
-                pathRules[i] = (MazeBasePathRule) Activator.CreateInstance(pathFindingRules[i].Type);
-            }
-
             var gridController = _gameObject.AddComponent<MazeGridController>();
-            gridController.SetData(configuration, pathRules);
+            gridController.SetData(configuration);
         }
 
         private void DestroyGameObject()

@@ -8,7 +8,7 @@ namespace UnityGPT
         {
             foreach (var character in Configuration.Characters)
             {
-                ActionRule.Apply();
+                FirstRule.Apply();
                 var random = character.Amount.Min;
                 for (var i = 0; i < random; i++)
                 {

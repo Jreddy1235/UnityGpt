@@ -2,11 +2,13 @@ namespace UnityGPT
 {
     public abstract class MazeBaseRule
     {
+        public virtual bool IsSkipFirstTile { get; set; }
         protected MazeGrid Grid { get; private set; }
 
-        public abstract void Apply();
+        public virtual bool Apply(MazeTile tile) => true;
+        public virtual void Apply(){}
 
-        public virtual void OnInit()
+        protected virtual void OnInit()
         {
         }
 
@@ -15,5 +17,7 @@ namespace UnityGPT
             Grid = grid;
             OnInit();
         }
+        
+        public virtual void Reset(){}
     }
 }
