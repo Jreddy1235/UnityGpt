@@ -22,7 +22,6 @@ namespace UnityGPT
                     var endTile = path.Peek();
                     endTile.Value = collectable.Id;
                     Grid.PathsMapping[startTile].Paths.Add(endTile, path);
-                    break;
                 }
             }
 

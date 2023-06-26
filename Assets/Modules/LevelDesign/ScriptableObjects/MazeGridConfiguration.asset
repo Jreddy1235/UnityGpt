@@ -28,12 +28,14 @@ MonoBehaviour:
   - name: Blue
     id: 225
     amount:
-      min: 0
-      max: 0
+      min: 1
+      max: 1
     categoryId: Characters
   characterMapping:
   - collectableId: 11
     characterId: 215
+  - collectableId: 12
+    characterId: 225
   collectables:
   - name: Red
     id: 11
@@ -44,6 +46,15 @@ MonoBehaviour:
     pathLength:
       min: 9
       max: 9
+  - name: Blue
+    id: 12
+    amount:
+      min: 1
+      max: 1
+    categoryId: Collectables
+    pathLength:
+      min: 6
+      max: 6
   obstacles:
   - name: White
     id: 0
