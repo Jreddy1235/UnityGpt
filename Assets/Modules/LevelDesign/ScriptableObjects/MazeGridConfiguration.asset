@@ -45,13 +45,34 @@ MonoBehaviour:
       min: 9
       max: 9
   obstacles:
-  - name: Red
+  - name: White
     id: 0
     amount:
-      min: 0
-      max: 0
+      min: 2
+      max: 4
     categoryId: Obstacles
-    weight: 0
+    weight: 2
+  - name: Red
+    id: 1
+    amount:
+      min: 2
+      max: 4
+    categoryId: Obstacles
+    weight: 3
+  - name: Blue
+    id: 2
+    amount:
+      min: 2
+      max: 4
+    categoryId: Obstacles
+    weight: 5
+  - name: Green
+    id: 3
+    amount:
+      min: 2
+      max: 3
+    categoryId: Obstacles
+    weight: 1
   extraElements:
   - name: Empty Tile
     id: -1
