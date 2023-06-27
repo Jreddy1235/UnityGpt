@@ -19,9 +19,12 @@ namespace UnityGPT
                 {
                     return true;
                 }
-                else
-                {
-                }
+
+                var commonNeighbors = neighbors[0].Neighbors.ToArray()
+                    .Intersect(neighbors[1].Neighbors.ToArray()).ToList();
+
+                if (commonNeighbors.Count == 1 && commonNeighbors[0].IsAvailable)
+                    return true;
             }
 
             return false;

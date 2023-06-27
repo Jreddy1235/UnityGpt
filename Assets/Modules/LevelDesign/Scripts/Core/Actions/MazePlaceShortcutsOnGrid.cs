@@ -15,7 +15,6 @@ namespace UnityGPT
 
                 var shortcut = new Stack<MazeTile>();
                 shortcut.Push(tile);
-                Debug.LogError(tile.RowIndex + " x " + tile.ColumnIndex);
                 shortcut.MarkPathTiles();
                 Grid.Shortcuts.Add(shortcut);
             }
