@@ -37,13 +37,13 @@ namespace UnityGPT
                 _bindingTiles.FirstCornerTile = Grid[0, 0];
                 _bindingTiles.SecondCornerTile = Grid[0, Grid.ColumnCount - 1];
             }
-            else if (sideTile.ColIndex == 0)
+            else if (sideTile.ColumnIndex == 0)
             {
                 CheckForPreBinding(0, Grid.RowCount - 1, 0, 1);
                 _bindingTiles.FirstCornerTile = Grid[Grid.RowCount - 1, Grid.ColumnCount - 1];
                 _bindingTiles.SecondCornerTile = Grid[0, Grid.ColumnCount - 1];
             }
-            else if (sideTile.ColIndex == Grid.ColumnCount - 1)
+            else if (sideTile.ColumnIndex == Grid.ColumnCount - 1)
             {
                 CheckForPreBinding(0, Grid.RowCount - 1, Grid.ColumnCount - 1, Grid.ColumnCount);
                 _bindingTiles.FirstCornerTile = Grid[Grid.RowCount - 1, 0];
@@ -112,7 +112,7 @@ namespace UnityGPT
 
         private float GetDistance(MazeTile tile, MazeTile otherTile)
         {
-            return Mathf.Pow(tile.RowIndex - otherTile.RowIndex, 2) + Mathf.Pow(tile.ColIndex - otherTile.ColIndex, 2);
+            return Mathf.Pow(tile.RowIndex - otherTile.RowIndex, 2) + Mathf.Pow(tile.ColumnIndex - otherTile.ColumnIndex, 2);
         }
     }
 }

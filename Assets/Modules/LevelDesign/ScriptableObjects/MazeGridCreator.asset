@@ -66,6 +66,16 @@ MonoBehaviour:
       _suppressLogs: 0
   - action:
       GuidAssignmentFailed: 0
+      GUID: 782168d7562844cba3f0e2be38d96b4c
+      _typeNameAndAssembly: UnityGPT.MazePlaceShortcutsOnGrid, Assembly-CSharp
+      _suppressLogs: 0
+    rules:
+    - GuidAssignmentFailed: 0
+      GUID: 4fe72dfd611d46f893e16a07840932f1
+      _typeNameAndAssembly: UnityGPT.MazeCanTileBeShortcut, Assembly-CSharp
+      _suppressLogs: 0
+  - action:
+      GuidAssignmentFailed: 0
       GUID: 3681f847c384740ce881bbbcc38d0f61
       _typeNameAndAssembly: UnityGPT.MazePlaceObstaclesOnGrid, Assembly-CSharp
       _suppressLogs: 0

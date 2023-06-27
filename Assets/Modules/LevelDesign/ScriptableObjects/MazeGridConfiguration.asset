@@ -18,6 +18,8 @@ MonoBehaviour:
   mockPathInfo:
     frequency: 0.7
     exitChances: 0.2
+  shortcutsInfo:
+    frequency: 1
   characters:
   - name: Red
     id: 215

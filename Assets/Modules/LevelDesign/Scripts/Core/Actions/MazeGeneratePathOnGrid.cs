@@ -17,8 +17,18 @@ namespace UnityGPT
                 for (var i = 0; i < random; i++)
                 {
                     var startTile = GetPathStartTile(collectable.Id);
-                    if (startTile == null || !GeneratePath(startTile, pathLength, out var path))
-                        continue;
+                    if (startTile == null) continue;
+                    var iterations = Configuration.Iterations;
+                    var isPathGenerated = false;
+                    var path = new Stack<MazeTile>();
+                    while (iterations-- > 0)
+                    {
+                        isPathGenerated =
+                            GeneratePath(startTile, pathLength - (Configuration.Iterations - iterations), out path);
+                        if (isPathGenerated || pathLength < Configuration.Iterations - iterations + 2) break;
+                    }
+
+                    if (!isPathGenerated) continue;
                     var endTile = path.Peek();
                     endTile.Value = collectable.Id;
                     Grid.PathsMapping[startTile].Paths.Add(endTile, path);

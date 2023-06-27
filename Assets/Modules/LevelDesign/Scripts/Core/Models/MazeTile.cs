@@ -5,7 +5,7 @@ namespace UnityGPT
     public class MazeTile
     {
         public int RowIndex { get; set; }
-        public int ColIndex { get; set; }
+        public int ColumnIndex { get; set; }
         public int Value { get; set; }
         public bool HasCharacter { get; set; }
         public bool HasNoTile { get; set; }

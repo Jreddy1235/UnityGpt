@@ -10,8 +10,9 @@ namespace UnityGPT
     {
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private Vector2Int offset;
-        [SerializeField] private Difficulty difficulty;
+        [SerializeField] private int iterations;
         [SerializeField] private MockPathInfo mockPathInfo;
+        [SerializeField] private ShortcutsInfo shortcutsInfo;
         [SerializeField] private Character[] characters;
         [SerializeField] private CharacterMapping[] characterMapping;
         [SerializeField] private Collectable[] collectables;
@@ -20,12 +21,13 @@ namespace UnityGPT
 
         public Vector2Int GridSize => gridSize;
         public Vector2Int Offset => offset;
-        public Difficulty Difficulty => difficulty;
+        public int Iterations => iterations;
         public Character[] Characters => characters;
         public Collectable[] Collectables => collectables;
         public Obstacle[] Obstacles => obstacles;
         public BaseBoardElement[] ExtraElements => extraElements;
         public MockPathInfo MockPathInfo => mockPathInfo;
+        public ShortcutsInfo ShortcutsInfo => shortcutsInfo;
 
         public int GetMappedCharacter(int collectableId)
         {
@@ -40,13 +42,6 @@ namespace UnityGPT
 
         public List<BaseBoardElement> BoardElements => characters.Concat<BaseBoardElement>(collectables)
             .Concat(obstacles).Concat(characters).Concat(extraElements).ToList();
-    }
-
-    public enum Difficulty
-    {
-        Easy,
-        Medium,
-        Hard
     }
 
     [Serializable]
@@ -112,5 +107,13 @@ namespace UnityGPT
 
         public float Frequency => frequency;
         public float ExitChances => exitChances;
+    }
+    
+    [Serializable]
+    public class ShortcutsInfo
+    {
+        [SerializeField] [Range(0, 1)] private float frequency;
+
+        public float Frequency => frequency;
     }
 }
