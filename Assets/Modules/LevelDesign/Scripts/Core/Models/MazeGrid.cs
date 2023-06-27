@@ -89,9 +89,9 @@ namespace UnityGPT
             
             var pathTiles = new List<List<MazeTile>>
             {
-                Shortcuts.SelectMany(stack => stack).ToList(),
-                CoveragePaths.SelectMany(stack => stack).ToList(),
-                MockPaths.SelectMany(stack => stack).ToList(),
+                Shortcuts.SelectMany(path => path.Where(tile => !tile.HasCharacter && !tile.IsFrozen)).ToList(),
+                CoveragePaths.SelectMany(path => path.Where(tile => !tile.HasCharacter && !tile.IsFrozen)).ToList(),
+                MockPaths.SelectMany(path => path.Where(tile => !tile.HasCharacter && !tile.IsFrozen)).ToList(),
                 pathMappingTiles
             };
             
