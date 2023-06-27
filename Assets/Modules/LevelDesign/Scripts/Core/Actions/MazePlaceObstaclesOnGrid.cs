@@ -9,8 +9,8 @@ namespace UnityGPT
     {
         protected override TaskStatus OnUpdate()
         {
-            var sortedObstacles = Configuration.Obstacles.ToList();
-            sortedObstacles.Sort((a, b) => b.Weight.CompareTo(a.Weight));
+            var sortedObstacles = Configuration.Obstacles.Where(x => x.AssociateElementIds.Length == 0).ToList();
+            sortedObstacles.Sort((a, b) => b.Priority.CompareTo(a.Priority));
             var walkableTiles = GetWalkableTiles();
             foreach (var obstacle in sortedObstacles)
             {
@@ -34,7 +34,7 @@ namespace UnityGPT
             foreach (var pathInfo in Grid.PathsMapping.Values)
             {
                 walkableTiles.AddRange(pathInfo.Paths.Values.SelectMany(path =>
-                    path.Where(tile => tile != path.First() && tile != path.Last())));
+                    path.Where(tile => tile != path.First() && tile != path.Last() && !tile.IsFrozen)));
             }
 
             return walkableTiles;

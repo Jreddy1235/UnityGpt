@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UnityGPT
 {
@@ -14,6 +15,7 @@ namespace UnityGPT
         public MazeGridBindingTiles BindingTiles { get; set; } = new();
         public int RowCount => Grid.GetLength(0);
         public int ColumnCount => Grid.GetLength(1);
+        public List<int> IndexOfPath { get; set; } = new();
 
         public MazeGrid(int[,] grid)
         {
@@ -74,6 +76,26 @@ namespace UnityGPT
             }
 
             return tiles;
+        }
+
+        public List<List<MazeTile>> PathTileForElementPlacement()
+        {
+            var pathMappingTiles = new List<MazeTile>();
+            foreach (var pathInfo in PathsMapping.Values)
+            {
+                pathMappingTiles.AddRange(pathInfo.Paths.Values.SelectMany(path =>
+                    path.Where(tile => tile != path.First() && tile != path.Last() && !tile.IsFrozen)));
+            }
+            
+            var pathTiles = new List<List<MazeTile>>
+            {
+                Shortcuts.SelectMany(stack => stack).ToList(),
+                CoveragePaths.SelectMany(stack => stack).ToList(),
+                MockPaths.SelectMany(stack => stack).ToList(),
+                pathMappingTiles
+            };
+            
+            return pathTiles;
         }
     }
 }
