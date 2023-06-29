@@ -8,6 +8,7 @@ namespace UnityGPT
         public int ColumnIndex { get; set; }
         public int Value { get; set; }
         public bool HasCharacter { get; set; }
+        public bool HasObstacle { get; set; }
         public bool HasNoTile { get; set; }
         public bool IsFrozen { get; set; }
         public bool IsAvailable => !HasNoTile && !IsFrozen && Value < MazeConstants.TileOnlyId;

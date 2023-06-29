@@ -18,11 +18,16 @@ namespace UnityGPT
                 rule?.Apply();
             }
             Grid.IndexOfPath.Sort((a,b)=> a.CompareTo(b));
+            
+            _walkableTiles = Grid.PathTileForElementPlacement();
+            foreach (var path in _walkableTiles)
+            {
+                path.RemoveAll(x => x.Value != MazeConstants.TileOnlyId);
+            }
         }
 
         protected void PlaceElementOnGrid(List<Obstacle> elementList)
         {
-            _walkableTiles = Grid.PathTileForElementPlacement();
             foreach (var element in elementList)
             {
                 var amount = Random.Range(element.Amount.Min, element.Amount.Max + 1);
@@ -34,13 +39,13 @@ namespace UnityGPT
                     var tile = GetTileForMechanic();
                     if (tile == null) break;
                     tile.Value = element.Id;
-                    tile.IsFrozen = true;
+                    tile.HasObstacle = true;
                     foreach (var associateElement in element.AssociateElementIds)
                     {
                         var tile1 = GetTileForMechanic();
                         if (tile1 == null) break;
                         tile1.Value = associateElement;
-                        tile1.IsFrozen = true;
+                        tile1.HasObstacle = true;
                     }
                 }
             }
@@ -51,12 +56,19 @@ namespace UnityGPT
             foreach (var index in Grid.IndexOfPath)
             {
                 var tile = GetRandomTileFromPath(index);
-                if (tile == null || tile.IsFrozen) continue;
+                if (tile == null || tile.HasObstacle) continue;
                 
                 _walkableTiles[index].Remove(tile);
                 return tile;
             }
 
+            foreach (var tile in Grid.ToList())
+            {
+                if (tile.Value != MazeConstants.TileOnlyId) continue;
+
+                return tile;
+            }
+            
             return null;
         }
 
