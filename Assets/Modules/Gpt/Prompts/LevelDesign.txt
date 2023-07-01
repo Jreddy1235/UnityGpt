@@ -494,5 +494,5 @@ Completion: Medium
 Prompt: Player is looking for a intense challenge
 Completion: Hard
 
-Prompt: First puzzle of the game
+Prompt: {0}
 Completion: 
