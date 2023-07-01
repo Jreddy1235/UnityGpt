@@ -22,5 +22,5 @@ MonoBehaviour:
     presencePenalty: 0
   userPrompt: {fileID: 4900000, guid: 18f45eedc3e6e4e498c5c0a9f252e1d0, type: 3}
   role: user
-  userResponse: 
+  userResponse: Player is looking for a intense challenge
   model: gpt-3.5-turbo
