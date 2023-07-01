@@ -20,4 +20,4 @@ MonoBehaviour:
   - gpt-3.5-turbo
   - davinci-instruct-beta
   baseUrl: https://api.openai.com/v1/
-  apiKey: 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
+  apiKey: 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
