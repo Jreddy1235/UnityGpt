@@ -21,5 +21,6 @@ MonoBehaviour:
     frequencyPenalty: 0
     presencePenalty: 0
   userPrompt: {fileID: 4900000, guid: 18f45eedc3e6e4e498c5c0a9f252e1d0, type: 3}
-  userResponse: what is 1+1?
+  replaceStr: '{0}'
+  userResponse: Player is clearing levels quickly. Give difficulty.
   model: text-davinci-003

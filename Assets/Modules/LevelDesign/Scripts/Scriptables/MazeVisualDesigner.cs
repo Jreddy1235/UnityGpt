@@ -24,7 +24,6 @@ namespace UnityGPT
         public void SendRequest(string input, Action onGridCreated)
         {
             _onGridCreated = onGridCreated;
-            _presetName = null;
             if (completions != null)
                 completions.SendRequest(input, OnCompletionReceived);
         }
@@ -51,6 +50,7 @@ namespace UnityGPT
         {
             if (GridCreator != null)
                 GridCreator.DoReset();
+            _presetName = null;
         }
 
         private void OnGridCreated(string gridStr, int rowCount, int columnCount)

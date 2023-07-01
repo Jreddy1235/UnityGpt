@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: MazeGridConfiguration
   m_EditorClassIdentifier: 
   gridSize: {x: 5, y: 9}
-  offset: {x: 0, y: 0}
+  reqInventoryItems:
+    min: 12
+    max: 16
   iterations: 6
   mockPathInfo:
     frequency: 0.7
