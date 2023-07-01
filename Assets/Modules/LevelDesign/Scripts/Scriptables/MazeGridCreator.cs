@@ -3,7 +3,6 @@ using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 using JetBrains.Annotations;
 using NaughtyAttributes;
-using TypeReferences;
 using UniRx;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -19,8 +18,9 @@ namespace UnityGPT
 
         [SerializeField] private MazeGridConfiguration configuration;
         [SerializeField] private BehaviorTree tree;
-
         [SerializeField] private MazeTreeInfo[] treeNodes;
+
+        public MazeGridConfiguration Configuration => configuration;
 
         private GameObject _gameObject;
         private bool _isEnded;
@@ -62,8 +62,15 @@ namespace UnityGPT
         [Button]
         public void DoReset()
         {
-            tree?.Reset();
-            tree = null;
+            try
+            {
+                tree?.Reset();
+                tree = null;
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         [UsedImplicitly]

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ddc29e2f53742fbb2e447ff2a67e9b, type: 3}
   m_Name: MazeVisualDesigner
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: c4f6e8a6893684051b376a4c291ee453, type: 2}
-  gridCreator: {fileID: 11400000, guid: e53f59d6175c44420bc396af92eb60fa, type: 2}
-  gridConfiguration: {fileID: 11400000, guid: d81df595dbe9245468dea8859aafd25b, type: 2}
-  gridString: -2,-2,-2,-1,215,-2,-1,-2,-2,-1,-1,11
-  rows: 3
-  columns: 4
+  presetSelector: {fileID: 11400000, guid: a7fca92d440594622858adf0ffcbdfab, type: 2}
+  completions: {fileID: 11400000, guid: 70e4cb25c3c4749be8218b6efe0ee894, type: 2}
+  gridString: 2,2,-2,-2,2,51,-2,2,3,1,3,-2,1,0,-2,-2,215,3,-2,0,50,225,-2,40,11,1,-2,1,-2,12,-2,2,41,0,0,3
+  rows: 6
+  columns: 6

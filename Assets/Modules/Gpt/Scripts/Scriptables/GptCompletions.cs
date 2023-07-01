@@ -18,6 +18,12 @@ namespace UnityGPT
 
         private string CompletionsUrl => Settings.BaseUrl + completionsUrl;
 
+        public void SendRequest(string input)
+        {
+            userResponse = input;
+            SendRequest();
+        }
+        
         [UsedImplicitly]
         [Button]
         private void SendRequest()

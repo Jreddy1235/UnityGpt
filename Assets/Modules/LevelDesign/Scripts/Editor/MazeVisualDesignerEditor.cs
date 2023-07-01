@@ -10,11 +10,15 @@ namespace UnityGPT
     [CustomEditor(typeof(MazeVisualDesigner))]
     public class MazeVisualDesignerEditor : Editor
     {
+        private const int ButtonHeight = 40;
+        private const float GridOffset = 6.5f;
+
         private MazeVisualDesigner _visualDesigner;
         private string _gridString;
         private int _width;
         private List<int> _layout;
         private int _index;
+        private string _text;
 
         private void OnEnable()
         {
@@ -27,17 +31,33 @@ namespace UnityGPT
             DrawDefaultInspector();
             GUILayout.Space(10);
 
-            if (GUILayout.Button("Generate Grid"))
+            if (_visualDesigner.Settings == null) return;
+
+            _text = EditorGUILayout.TextArea(_text);
+
+            if (GUILayout.Button("Send Request"))
+            {
+                _visualDesigner.SendRequest(_text);
+            }
+
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Generate Grid", GUILayout.Height(ButtonHeight)))
             {
                 _visualDesigner.GenerateGrid(OnGridCreated);
             }
 
-            if (GUILayout.Button("Clear Grid"))
+            if (GUILayout.Button("Print Grid", GUILayout.Height(ButtonHeight)))
+            {
+                _visualDesigner.PrintGrid();
+            }
+
+            if (GUILayout.Button("Clear Grid", GUILayout.Height(ButtonHeight)))
             {
                 _gridString = null;
                 _visualDesigner.ResetGrid();
             }
 
+            EditorGUILayout.EndHorizontal();
             GenerateGrid();
         }
 
@@ -46,7 +66,7 @@ namespace UnityGPT
             Observable.ReturnUnit().DelayFrame(1).Subscribe(_ =>
             {
                 _gridString = serializedObject.FindProperty("gridString").stringValue;
-                GUI.changed = true;
+                Repaint();
             });
         }
 
@@ -61,8 +81,7 @@ namespace UnityGPT
                 var numbers = _layout = _gridString?.Split(',')?.Select(int.Parse).ToList() ?? new List<int>();
                 var rows = serializedObject.FindProperty("rows").intValue;
                 var columns = serializedObject.FindProperty("columns").intValue;
-                var width = EditorGUIUtility.currentViewWidth / columns - 10;
-                //EditorGUI.BeginDisabledGroup(true);
+                var width = EditorGUIUtility.currentViewWidth / columns - GridOffset;
                 for (var i = 0; i < rows; i++)
                 {
                     GUILayout.BeginHorizontal();
@@ -102,7 +121,6 @@ namespace UnityGPT
                     GUILayout.EndHorizontal();
                 }
 
-                //EditorGUI.EndDisabledGroup();
                 GUI.color = Color.white;
                 EditorGUILayout.EndVertical();
             }
@@ -118,7 +136,7 @@ namespace UnityGPT
             var image1Pixels = image1.GetPixels();
             var image2Pixels = image2.GetPixels();
             var combinedPixels = new Color[image1Pixels.Length];
-            for (int i = 0; i < image1Pixels.Length; i++)
+            for (var i = 0; i < image1Pixels.Length; i++)
             {
                 combinedPixels[i] = Color.Lerp(image2Pixels[i], image1Pixels[i], image1Pixels[i].a);
             }
@@ -130,7 +148,7 @@ namespace UnityGPT
 
         private void DoOnGridCellClicked(int row, int column, int index)
         {
-            GenericMenu menu = new GenericMenu();
+            var menu = new GenericMenu();
             _index = index;
 
             foreach (var element in _visualDesigner.GridConfiguration.BoardElements)
@@ -138,16 +156,16 @@ namespace UnityGPT
                 AddMenuItem(menu, element.CategoryId + "/" + element.Name, element);
                 menu.AddSeparator("");
             }
-            
+
             menu.ShowAsContext();
         }
 
-        void AddMenuItem(GenericMenu menu, string menuPath, BaseBoardElement obj)
+        private void AddMenuItem(GenericMenu menu, string menuPath, BaseBoardElement obj)
         {
             menu.AddItem(new GUIContent(menuPath), false, DoOnSelection, obj);
         }
 
-        void DoOnSelection(object obj)
+        private void DoOnSelection(object obj)
         {
             var element = (BaseBoardElement) obj;
             _layout[_index] = element.Id;
