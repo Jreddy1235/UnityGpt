@@ -19,11 +19,14 @@ namespace UnityGPT
         private MazeGridCreator GridCreator => presetSelector.GetGridCreator(_presetName);
 
         private string _presetName;
+        private Action _onGridCreated;
 
-        public void SendRequest(string input)
+        public void SendRequest(string input, Action onGridCreated)
         {
+            _onGridCreated = onGridCreated;
+            _presetName = null;
             if (completions != null)
-                completions.SendRequest(input);
+                completions.SendRequest(input, OnCompletionReceived);
         }
 
         public void SetGridString(string value)
@@ -34,14 +37,7 @@ namespace UnityGPT
 
         public void GenerateGrid(Action onGridCreated)
         {
-            void OnGridCreated(string gridStr, int rowCount, int columnCount)
-            {
-                gridString = gridStr;
-                rows = rowCount;
-                columns = columnCount;
-                onGridCreated?.Invoke();
-            }
-
+            _onGridCreated = onGridCreated;
             if (GridCreator != null)
                 GridCreator.CreateGrid(OnGridCreated);
         }
@@ -55,6 +51,20 @@ namespace UnityGPT
         {
             if (GridCreator != null)
                 GridCreator.DoReset();
+        }
+
+        private void OnGridCreated(string gridStr, int rowCount, int columnCount)
+        {
+            gridString = gridStr;
+            rows = rowCount;
+            columns = columnCount;
+            _onGridCreated?.Invoke();
+        }
+
+        private void OnCompletionReceived(string response)
+        {
+            _presetName = response;
+            GenerateGrid(_onGridCreated);
         }
     }
 }

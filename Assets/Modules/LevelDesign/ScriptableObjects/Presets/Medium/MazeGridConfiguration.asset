@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf2a4a597e7f43b9a3fb7e0184c53dd, type: 3}
   m_Name: MazeGridConfiguration
   m_EditorClassIdentifier: 
-  gridSize: {x: 6, y: 6}
+  gridSize: {x: 4, y: 6}
   offset: {x: 0, y: 0}
   iterations: 5
   mockPathInfo:
@@ -27,42 +27,25 @@ MonoBehaviour:
       min: 1
       max: 1
     categoryId: Characters
-  - name: Blue
-    id: 225
-    amount:
-      min: 1
-      max: 1
-    categoryId: Characters
   characterMapping:
   - collectableId: 11
     characterId: 215
-  - collectableId: 12
-    characterId: 225
   collectables:
   - name: Red
     id: 11
     amount:
-      min: 1
-      max: 1
+      min: 2
+      max: 3
     categoryId: Collectables
     pathLength:
-      min: 9
+      min: 5
       max: 9
-  - name: Blue
-    id: 12
-    amount:
-      min: 1
-      max: 1
-    categoryId: Collectables
-    pathLength:
-      min: 6
-      max: 6
   obstacles:
   - name: White
     id: 0
     amount:
-      min: 2
-      max: 4
+      min: 4
+      max: 8
     categoryId: Obstacles
     priority: 0.2
     weight: 0
@@ -70,8 +53,8 @@ MonoBehaviour:
   - name: Red
     id: 1
     amount:
-      min: 2
-      max: 7
+      min: 4
+      max: 8
     categoryId: Obstacles
     priority: 0.3
     weight: 0
@@ -79,8 +62,8 @@ MonoBehaviour:
   - name: Blue
     id: 2
     amount:
-      min: 3
-      max: 7
+      min: 4
+      max: 8
     categoryId: Obstacles
     priority: 0.5
     weight: 0
@@ -88,8 +71,8 @@ MonoBehaviour:
   - name: Green
     id: 3
     amount:
-      min: 3
-      max: 7
+      min: 4
+      max: 8
     categoryId: Obstacles
     priority: 0
     weight: 0

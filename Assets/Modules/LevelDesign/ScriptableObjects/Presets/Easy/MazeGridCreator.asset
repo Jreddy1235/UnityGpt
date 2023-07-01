@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da66f6ebc3e64d18a224e8aa191dd6e8, type: 3}
   m_Name: MazeGridCreator
   m_EditorClassIdentifier: 
-  configuration: {fileID: 11400000, guid: d81df595dbe9245468dea8859aafd25b, type: 2}
+  configuration: {fileID: 11400000, guid: 0e8d012f9a4da4c57afa91f2b2d3f5f6, type: 2}
   treeNodes:
   - action:
       GuidAssignmentFailed: 0
@@ -50,16 +50,6 @@ MonoBehaviour:
       GUID: af4040f9d40c4e98936209db987a26e7
       _typeNameAndAssembly: UnityGPT.MazePathCoverageRule, Assembly-CSharp
       _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: 485d19b9f854485294143216626c5613
-      _typeNameAndAssembly: UnityGPT.MazeIsTileAvailable, Assembly-CSharp
-      _suppressLogs: 0
-  - action:
-      GuidAssignmentFailed: 0
-      GUID: 55f6e979d3584f2eb81be56156109900
-      _typeNameAndAssembly: UnityGPT.MazeCreateMockPaths, Assembly-CSharp
-      _suppressLogs: 0
-    rules:
     - GuidAssignmentFailed: 0
       GUID: 485d19b9f854485294143216626c5613
       _typeNameAndAssembly: UnityGPT.MazeIsTileAvailable, Assembly-CSharp
@@ -118,9 +108,3 @@ MonoBehaviour:
       GUID: 05fad689078824353ae3266f0dacfdc2
       _typeNameAndAssembly: UnityGPT.MazeSelectPathMappingTiles, Assembly-CSharp
       _suppressLogs: 0
-  - action:
-      GuidAssignmentFailed: 0
-      GUID: 1953c30d2c0646639e8cafa03239bb63
-      _typeNameAndAssembly: UnityGPT.MazePrintGrid, Assembly-CSharp
-      _suppressLogs: 0
-    rules: []

@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using NaughtyAttributes;
 using Newtonsoft.Json;
@@ -18,9 +19,12 @@ namespace UnityGPT
 
         private string CompletionsUrl => Settings.BaseUrl + completionsUrl;
 
-        public void SendRequest(string input)
+        private Action<string> _onComplete;
+
+        public void SendRequest(string input, Action<string> onComplete = null)
         {
             userResponse = input;
+            _onComplete = onComplete;
             SendRequest();
         }
         
@@ -38,7 +42,10 @@ namespace UnityGPT
         {
             var completionText = response?.Choices?[0]?.Text;
             if (string.IsNullOrWhiteSpace(completionText)) return;
-            Debug.Log(completionText.TrimStart());
+            completionText = completionText.TrimStart();
+            Debug.Log(completionText);
+            _onComplete?.Invoke(completionText);
+            _onComplete = null;
         }
 
 

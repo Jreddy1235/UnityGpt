@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da66f6ebc3e64d18a224e8aa191dd6e8, type: 3}
   m_Name: MazeGridCreator
   m_EditorClassIdentifier: 
-  configuration: {fileID: 11400000, guid: d81df595dbe9245468dea8859aafd25b, type: 2}
+  configuration: {fileID: 11400000, guid: 6f1d0147a5f8a498b80ab1ca30bbf89c, type: 2}
   treeNodes:
   - action:
       GuidAssignmentFailed: 0
@@ -118,9 +118,3 @@ MonoBehaviour:
       GUID: 05fad689078824353ae3266f0dacfdc2
       _typeNameAndAssembly: UnityGPT.MazeSelectPathMappingTiles, Assembly-CSharp
       _suppressLogs: 0
-  - action:
-      GuidAssignmentFailed: 0
-      GUID: 1953c30d2c0646639e8cafa03239bb63
-      _typeNameAndAssembly: UnityGPT.MazePrintGrid, Assembly-CSharp
-      _suppressLogs: 0
-    rules: []

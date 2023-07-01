@@ -12,8 +12,8 @@ namespace UnityGPT
         {
             foreach (var collectable in Configuration.Collectables)
             {
-                var random = collectable.Amount.Min;
-                var pathLength = collectable.PathLength.Min + 1;
+                var random = Random.Range(collectable.Amount.Min, collectable.Amount.Max);
+                var pathLength = Random.Range(collectable.PathLength.Min, collectable.PathLength.Max) + 1;
                 for (var i = 0; i < random; i++)
                 {
                     var startTile = GetPathStartTile(collectable.Id);

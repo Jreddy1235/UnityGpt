@@ -10,6 +10,7 @@ namespace UnityGPT
     [CustomEditor(typeof(MazeVisualDesigner))]
     public class MazeVisualDesignerEditor : Editor
     {
+        private const string MazeQuery = "MazeQuery";
         private const int ButtonHeight = 40;
         private const float GridOffset = 6.5f;
 
@@ -24,6 +25,7 @@ namespace UnityGPT
         {
             _visualDesigner = (MazeVisualDesigner) target;
             _gridString = serializedObject.FindProperty("gridString").stringValue;
+            _text = EditorPrefs.GetString(MazeQuery);
         }
 
         public override void OnInspectorGUI()
@@ -35,23 +37,24 @@ namespace UnityGPT
 
             _text = EditorGUILayout.TextArea(_text);
 
-            if (GUILayout.Button("Send Request"))
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Generate via AI", GUILayout.Height(ButtonHeight)))
             {
-                _visualDesigner.SendRequest(_text);
+                EditorPrefs.SetString(MazeQuery, _text);
+                _visualDesigner.SendRequest(_text, OnGridCreated);
             }
 
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Generate Grid", GUILayout.Height(ButtonHeight)))
+            if (GUILayout.Button("Swift Generate", GUILayout.Height(ButtonHeight)))
             {
                 _visualDesigner.GenerateGrid(OnGridCreated);
             }
 
-            if (GUILayout.Button("Print Grid", GUILayout.Height(ButtonHeight)))
+            if (GUILayout.Button("Print", GUILayout.Height(ButtonHeight)))
             {
                 _visualDesigner.PrintGrid();
             }
 
-            if (GUILayout.Button("Clear Grid", GUILayout.Height(ButtonHeight)))
+            if (GUILayout.Button("Clear", GUILayout.Height(ButtonHeight)))
             {
                 _gridString = null;
                 _visualDesigner.ResetGrid();
