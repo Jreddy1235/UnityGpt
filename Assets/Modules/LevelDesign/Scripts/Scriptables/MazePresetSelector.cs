@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using JetBrains.Annotations;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace UnityGPT
@@ -8,12 +10,25 @@ namespace UnityGPT
     public class MazePresetSelector : ScriptableObject
     {
         [SerializeField] private MazeSettings settings;
+
+        [SerializeField] [Dropdown("GetPresetNames")]
+        private string defaultPreset;
+
         [SerializeField] private GridCreatorPreset[] presets;
 
         public MazeSettings Settings => settings;
 
+        [UsedImplicitly]
+        public string[] GetPresetNames()
+        {
+            return presets.Where(t => t.GridCreator != null).Select(preset => preset.Name).ToArray();
+        }
+
         public MazeGridCreator GetGridCreator(string presetName)
         {
+            if (string.IsNullOrEmpty(presetName))
+                presetName = defaultPreset;
+
             var gridCreator = presets.Where(preset => preset.Name == presetName)
                 .Select(preset => preset.GridCreator)
                 .FirstOrDefault();

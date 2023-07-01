@@ -20,6 +20,6 @@ MonoBehaviour:
     topP: 0
     frequencyPenalty: 0
     presencePenalty: 0
-  userPrompt: {fileID: 0}
-  userResponse: What is 1+1?
+  userPrompt: {fileID: 4900000, guid: 18f45eedc3e6e4e498c5c0a9f252e1d0, type: 3}
+  userResponse: 
   model: text-davinci-003
