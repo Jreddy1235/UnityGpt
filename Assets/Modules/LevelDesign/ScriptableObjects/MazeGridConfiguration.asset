@@ -64,28 +64,54 @@ MonoBehaviour:
       min: 2
       max: 4
     categoryId: Obstacles
-    weight: 2
+    priority: 0.2
+    weight: 0
+    associateElementIds: 
   - name: Red
     id: 1
     amount:
       min: 2
-      max: 4
+      max: 7
     categoryId: Obstacles
-    weight: 3
+    priority: 0.3
+    weight: 0
+    associateElementIds: 
   - name: Blue
     id: 2
     amount:
-      min: 2
-      max: 4
+      min: 3
+      max: 7
     categoryId: Obstacles
-    weight: 5
+    priority: 0.5
+    weight: 0
+    associateElementIds: 
   - name: Green
     id: 3
     amount:
-      min: 2
-      max: 3
+      min: 3
+      max: 7
     categoryId: Obstacles
-    weight: 1
+    priority: 0
+    weight: 0
+    associateElementIds: 
+  - name: Mech1
+    id: 40
+    amount:
+      min: 1
+      max: 1
+    categoryId: Mechanics
+    priority: 0.285
+    weight: 0
+    associateElementIds: 29000000
+  - name: Mech2
+    id: 50
+    amount:
+      min: 1
+      max: 1
+    categoryId: Mechanics
+    priority: 0
+    weight: 0
+    associateElementIds: 33000000
   extraElements:
   - name: Empty Tile
     id: -1
@@ -99,3 +125,15 @@ MonoBehaviour:
       min: 0
       max: 0
     categoryId: Tiles
+  - name: Acti1
+    id: 41
+    amount:
+      min: 0
+      max: 0
+    categoryId: Activators
+  - name: Acti2
+    id: 51
+    amount:
+      min: 0
+      max: 0
+    categoryId: Activators

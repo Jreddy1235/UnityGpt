@@ -57,3 +57,19 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: a3754e5e81c6d4f6e94e3fbf26bdbeaf, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     hasBackground: 1
+  - id: 40
+    sprite: {fileID: 21300000, guid: 575e5a1da83b84331bc6d3e9ad6867a6, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    hasBackground: 1
+  - id: 41
+    sprite: {fileID: 21300000, guid: 2056beb115b534ad088eb73c077aebb6, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    hasBackground: 1
+  - id: 50
+    sprite: {fileID: 21300000, guid: d3de6e6288e8e4ec8956e8cce7211f4c, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    hasBackground: 1
+  - id: 51
+    sprite: {fileID: 21300000, guid: b7c2ff429596940a49fe303f740fa197, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    hasBackground: 1
