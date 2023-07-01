@@ -21,7 +21,7 @@ namespace UnityGPT
             
             foreach (var rule in Rules)
             {
-                rule.SetData(Grid);
+                rule.SetData(Grid, Configuration);
             }
         }
 

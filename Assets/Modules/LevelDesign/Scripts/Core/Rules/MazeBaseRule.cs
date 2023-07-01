@@ -4,7 +4,7 @@ namespace UnityGPT
     {
         public virtual bool IsSkipFirstTile { get; set; }
         protected MazeGrid Grid { get; private set; }
-
+        protected MazeGridConfiguration Configuration { get; private set; }
         public virtual bool Apply(MazeTile tile) => true;
         public virtual void Apply(){}
 
@@ -12,12 +12,13 @@ namespace UnityGPT
         {
         }
 
-        public void SetData(MazeGrid grid)
+        public void SetData(MazeGrid grid, MazeGridConfiguration configuration)
         {
             Grid = grid;
+            Configuration = configuration;
             OnInit();
         }
-        
+
         public virtual void Reset(){}
     }
 }

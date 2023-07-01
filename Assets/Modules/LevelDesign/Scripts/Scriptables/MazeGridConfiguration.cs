@@ -9,7 +9,7 @@ namespace UnityGPT
     public class MazeGridConfiguration : ScriptableObject
     {
         [SerializeField] private Vector2Int gridSize;
-        [SerializeField] private Vector2Int offset;
+        [SerializeField] private Range reqInventoryItems;
         [SerializeField] private int iterations;
         [SerializeField] private MockPathInfo mockPathInfo;
         [SerializeField] private ShortcutsInfo shortcutsInfo;
@@ -20,7 +20,7 @@ namespace UnityGPT
         [SerializeField] private BaseBoardElement[] extraElements;
 
         public Vector2Int GridSize => gridSize;
-        public Vector2Int Offset => offset;
+        public Range ReqInventoryItems => reqInventoryItems;
         public int Iterations => iterations;
         public Character[] Characters => characters;
         public Collectable[] Collectables => collectables;
