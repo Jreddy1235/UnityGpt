@@ -31,6 +31,7 @@ namespace UnityGPT
                     if (!isPathGenerated) continue;
                     var endTile = path.Peek();
                     endTile.Value = collectable.Id;
+                    endTile.HasCollectable = true;
                     Grid.PathsMapping[startTile].Paths.Add(endTile, path);
                 }
             }
