@@ -15,6 +15,7 @@ namespace UnityGPT
         private const float GridOffset = 6.5f;
 
         private MazeVisualDesigner _visualDesigner;
+        private Dictionary<Tuple<Texture2D, Texture2D>, GUIContent> _cachedCombinedContent = new();
         private string _gridString;
         private int _width;
         private List<int> _layout;
@@ -133,7 +134,7 @@ namespace UnityGPT
             }
         }
 
-        private GUIContent GetCombinedContent(Texture2D image1, Texture2D image2)
+        private GUIContent GetCombinedImageContent(Texture2D image1, Texture2D image2)
         {
             var combinedTexture = new Texture2D(image1.width, image1.height);
             var image1Pixels = image1.GetPixels();
@@ -147,6 +148,20 @@ namespace UnityGPT
             combinedTexture.SetPixels(combinedPixels);
             combinedTexture.Apply();
             return new GUIContent(combinedTexture);
+        }
+        
+        private GUIContent GetCombinedContent(Texture2D image1, Texture2D image2)
+        {
+            var cacheKey = new Tuple<Texture2D, Texture2D>(image1, image2);
+
+            if (_cachedCombinedContent.ContainsKey(cacheKey))
+            {
+                return _cachedCombinedContent[cacheKey];
+            }
+
+            var content = GetCombinedImageContent(image1, image2);
+            _cachedCombinedContent.Add(cacheKey, content);
+            return content;
         }
 
         private void DoOnGridCellClicked(int row, int column, int index)
