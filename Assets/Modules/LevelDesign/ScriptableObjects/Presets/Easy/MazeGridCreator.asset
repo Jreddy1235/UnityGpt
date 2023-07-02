@@ -108,3 +108,7 @@ MonoBehaviour:
       GUID: 05fad689078824353ae3266f0dacfdc2
       _typeNameAndAssembly: UnityGPT.MazeSelectPathMappingTiles, Assembly-CSharp
       _suppressLogs: 0
+    - GuidAssignmentFailed: 0
+      GUID: 5819d7f088e64f06aad7dd1a99252c67
+      _typeNameAndAssembly: UnityGPT.MazeHasInventoryItems, Assembly-CSharp
+      _suppressLogs: 0

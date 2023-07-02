@@ -10,6 +10,7 @@ namespace UnityGPT
         protected override TaskStatus OnUpdate()
         {
             ElementPlacementPreProcess();
+            inventoryRule = null;
             var mechanics = Configuration.Obstacles.Where(x => x.AssociateElementIds.Length > 0).ToList();
             mechanics.Sort((a, b) => b.Priority.CompareTo(a.Priority));
             PlaceElementOnGrid(mechanics);
