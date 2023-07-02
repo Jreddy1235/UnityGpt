@@ -12,20 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d303eaec70364927bd5f4e940892fc22, type: 3}
   m_Name: GptPromptGenerator
   m_EditorClassIdentifier: 
-  promptFormat: '{"prompt":"completion","{0}":"{1}"}
-
-'
+  promptFormat: '"prompt":"completion","{0}":"{1}"'
   lines:
-  - prompt: What should be the difficulty for a user completing the Common difficulty
+  - prompt: What are various difficulties in game?
+    completion: Easy, Medium and Hard
+  - prompt: What is Easy level?
+    completion: Easy level is a level of grid size 3 rows and 4 columns. Average
+      inventory items required to clear easy level is 5. It has 1 character and 1
+      collectable. There are 2 types of obstacles spawned randomly over the path
+      from character to collectable. There are 3 obstacles of each type present in
+      the level.
+  - prompt: What is Medium level?
+    completion: Medium level is a level of grid size 4 rows and 6 columns. Average
+      inventory items required to clear easy level is 10. It has 1 character and
+      2 collectables. There are 4 types of obstacles spawned randomly over the path
+      from character to collectable. There are 6 obstacles of each type present in
+      the level.
+  - prompt: What is Hard level?
+    completion: Hard level is a level of grid size 5 rows and 9 columns. Average
+      inventory items required to clear easy level is 16. It has 2 characters and
+      4 collectables. There are 4 types of obstacles spawned randomly over the path
+      from character to collectable. There are 7 obstacles of each type present in
+      the level.
+  - prompt: What should be the difficulty for a user completing the easy difficulty
       puzzles easily ?
     completion: Medium
-  - prompt: Difficulty for a user struggling to complete Medium levels
+  - prompt: What should be the difficulty for a user completing the medium difficulty
+      puzzles easily ?
+    completion: Hard
+  - prompt: Player is left with 12 inventory items. We want him to earn more inventory
+      items to clear the level. Give difficulty.
+    completion: Hard
+  - prompt: Player has played less than 10 levels. Give difficulty.
     completion: Easy
-  - prompt: Difficulty for a user, who is used to the game now
+  - prompt: Player has played 10-20 levels. Give difficulty.
     completion: Medium
-  - prompt: Player have played 6-7 puzzle and now he is looking for a challenge
-    completion: Medium
-  - prompt: Player is looking for a intense challenge
+  - prompt: Player has played more than 20 levels. Give difficulty.
     completion: Hard
   - prompt: '%prompt%'
     completion: '?'

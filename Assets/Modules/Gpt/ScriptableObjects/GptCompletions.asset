@@ -23,5 +23,6 @@ MonoBehaviour:
   promptGenerator: {fileID: 11400000, guid: 9cbc0952683be44848a1fc08b0b98391, type: 2}
   userPrompt: {fileID: 4900000, guid: 18f45eedc3e6e4e498c5c0a9f252e1d0, type: 3}
   replaceStr: '%prompt%'
-  userResponse: Difficulty for a new user, still learning the game
+  userResponse: Player is taking very long to clear levels. Give difficulty.
+  suffix: Give difficulty for above line in one word
   model: text-davinci-003

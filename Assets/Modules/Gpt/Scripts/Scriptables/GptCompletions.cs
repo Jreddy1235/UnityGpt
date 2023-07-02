@@ -18,6 +18,7 @@ namespace UnityGPT
 
         [SerializeField] private string replaceStr;
         [SerializeField] [ResizableTextArea] private string userResponse = "What is 1 + 1 ?";
+        [SerializeField] private string suffix;
 
         [SerializeField] [Dropdown("AvailableModels")]
         private string model = "text-davinci-003";
@@ -38,7 +39,7 @@ namespace UnityGPT
         private void SendRequest()
         {
             completionRequest.Model = model;
-            completionRequest.Prompt = GetUserPrompt();
+            completionRequest.Prompt = GetUserPrompt() + (!string.IsNullOrEmpty(suffix) ? "\n" + suffix : "");
             var requestString = JsonConvert.SerializeObject(completionRequest);
             SendPostRequest<GptCompletionsResponse>(CompletionsUrl, requestString, DoOnCompletions);
         }
@@ -58,7 +59,7 @@ namespace UnityGPT
         {
             var chatPrompt = NeedPromptGeneration ? promptGenerator.GetText() :
                 userPrompt != null ? userPrompt.text : "";
-            
+
             if (string.IsNullOrEmpty(userResponse)) return chatPrompt;
             if (!string.IsNullOrEmpty(chatPrompt) && !string.IsNullOrEmpty(replaceStr))
             {

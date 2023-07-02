@@ -29,7 +29,8 @@ namespace UnityGPT
             if (string.IsNullOrEmpty(presetName))
                 presetName = defaultPreset;
 
-            var gridCreator = presets.Where(preset => preset.Name == presetName)
+            presetName = presetName.ToLower();
+            var gridCreator = presets.Where(preset => presetName.Contains(preset.Name.ToLower()))
                 .Select(preset => preset.GridCreator)
                 .FirstOrDefault();
 

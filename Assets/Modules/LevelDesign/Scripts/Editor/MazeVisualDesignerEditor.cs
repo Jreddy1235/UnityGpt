@@ -36,7 +36,7 @@ namespace UnityGPT
 
             if (_visualDesigner.Settings == null) return;
 
-            _text = EditorGUILayout.TextArea(_text);
+            _text = EditorGUILayout.TextArea(_text, GUILayout.MinHeight(70));
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Generate via AI", GUILayout.Height(ButtonHeight)))
@@ -149,7 +149,7 @@ namespace UnityGPT
             combinedTexture.Apply();
             return new GUIContent(combinedTexture);
         }
-        
+
         private GUIContent GetCombinedContent(Texture2D image1, Texture2D image2)
         {
             var cacheKey = new Tuple<Texture2D, Texture2D>(image1, image2);

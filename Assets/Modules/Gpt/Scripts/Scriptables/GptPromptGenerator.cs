@@ -30,8 +30,8 @@ namespace UnityGPT
         [Serializable]
         private class JsonLine
         {
-            [SerializeField] private string prompt;
-            [SerializeField] private string completion;
+            [SerializeField][TextArea] private string prompt;
+            [SerializeField][TextArea] private string completion;
 
             public string Prompt => prompt;
             public string Completion => completion;
