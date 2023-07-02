@@ -20,7 +20,7 @@ MonoBehaviour:
   - ada
   fineTunesUrl: fine-tunes
   modelsUrl: models
-  fileId: file-vfkmrlGP0eITNGmplpyO1IPQ
-  fineTuneId: ft-qyGNrkmjngeDaq7Rl84FenES
+  fileId: file-uEPQSUXT5DV4UlPysQ7zCSJx
+  fineTuneId: ft-XBrWYZQ5nR9urukemJ8n8DF9
   model: curie:ft-personal-2023-06-02-17-32-17
   trainingModel: davinci

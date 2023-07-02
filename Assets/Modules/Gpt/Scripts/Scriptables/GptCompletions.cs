@@ -57,7 +57,7 @@ namespace UnityGPT
 
         private string GetUserPrompt()
         {
-            var chatPrompt = NeedPromptGeneration ? promptGenerator.GetText() :
+            var chatPrompt = NeedPromptGeneration ? promptGenerator.GetPromptText() :
                 userPrompt != null ? userPrompt.text : "";
 
             if (string.IsNullOrEmpty(userResponse)) return chatPrompt;

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d303eaec70364927bd5f4e940892fc22, type: 3}
   m_Name: GptPromptGenerator
   m_EditorClassIdentifier: 
-  promptFormat: '"prompt":"completion","{0}":"{1}"'
+  promptFormat: '"{0}":"{1}"'
+  trainingFormat: '"prompt":"{0}","completion":"{1}"'
   lines:
   - prompt: What are various difficulties in game?
     completion: Easy, Medium and Hard

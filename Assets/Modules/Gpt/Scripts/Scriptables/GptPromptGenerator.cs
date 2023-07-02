@@ -9,20 +9,36 @@ namespace UnityGPT
     [CreateAssetMenu(menuName = "Gpt Assets/Gpt Prompt Generator", fileName = "GptPromptGenerator")]
     public class GptPromptGenerator : ScriptableObject
     {
-        [SerializeField] private string promptFormat = "\"prompt\":\"completion\",\"{0}\":\"{1}\"";
+        [SerializeField] private string promptFormat = "\"{0}\":\"{1}\"";
+        [SerializeField] private string trainingFormat = "\"prompt\":\"{0}\",\"completion\":\"{1}\"";
         [SerializeField] private JsonLine[] lines;
 
-        public string GetText()
+        public string GetPromptText()
         {
             return lines.Aggregate("",
                 (current, line) => current + "{" + string.Format(promptFormat, line.Prompt, line.Completion) + "}\n");
         }
+        
+        private string GetTrainingText()
+        {
+            return lines.Aggregate("",
+                (current, line) => current + "{" + string.Format(trainingFormat, line.Prompt, line.Completion) + "}\n");
+        }
 
         [Button]
         [UsedImplicitly]
-        private void PrintText()
+        private void PrintPromptText()
         {
-            var text = GetText();
+            var text = GetPromptText();
+            Debug.Log(text);
+            GUIUtility.systemCopyBuffer = text;
+        }
+        
+        [Button]
+        [UsedImplicitly]
+        private void PrintTrainingText()
+        {
+            var text = GetTrainingText();
             Debug.Log(text);
             GUIUtility.systemCopyBuffer = text;
         }
