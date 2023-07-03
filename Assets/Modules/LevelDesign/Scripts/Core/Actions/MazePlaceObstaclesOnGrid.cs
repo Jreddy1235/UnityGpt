@@ -12,7 +12,7 @@ namespace UnityGPT
             ElementPlacementPreProcess();
             var sortedObstacles = Configuration.Obstacles.Where(x => x.AssociateElementIds.Length == 0).ToList();
             sortedObstacles.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-            PlaceElementOnGrid(sortedObstacles);
+            ShuffleAndPlaceElement(SeparateByPriority(sortedObstacles));
             return base.OnUpdate();
         }
     }

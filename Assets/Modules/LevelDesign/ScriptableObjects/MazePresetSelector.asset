@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MazePresetSelector
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: c4f6e8a6893684051b376a4c291ee453, type: 2}
-  defaultPreset: Easy
+  defaultPreset: Common
   presets:
   - name: Common
     gridCreator: {fileID: 11400000, guid: e53f59d6175c44420bc396af92eb60fa, type: 2}
@@ -22,4 +22,4 @@ MonoBehaviour:
   - name: Medium
     gridCreator: {fileID: 11400000, guid: 823b79271aa264bb5a3ccb0335ab73b7, type: 2}
   - name: Hard
-    gridCreator: {fileID: 11400000, guid: d0f8cbb22d3b64bed84e9def63a6ed5b, type: 2}
+    gridCreator: {fileID: 0}
