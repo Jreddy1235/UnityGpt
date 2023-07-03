@@ -87,6 +87,13 @@ namespace UnityGPT
         
         private MazeTile GetEmptyTile()
         {
+            foreach (var tile in Grid.PathMappingTiles())
+            {
+                if (tile.Value != MazeConstants.TileOnlyId) continue;
+
+                return tile;
+            }
+            
             foreach (var tile in Grid.ToList())
             {
                 if (tile.Value != MazeConstants.TileOnlyId) continue;
