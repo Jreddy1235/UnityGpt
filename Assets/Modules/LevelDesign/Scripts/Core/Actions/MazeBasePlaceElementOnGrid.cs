@@ -21,8 +21,7 @@ namespace UnityGPT
                 else
                     rule.Apply();
             }
-            Grid.IndexOfPath.Sort((a,b)=> a.CompareTo(b));
-            
+
             _walkableTiles = Grid.PathTileForElementPlacement();
             foreach (var path in _walkableTiles)
             {
