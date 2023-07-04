@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   presetSelector: {fileID: 11400000, guid: a7fca92d440594622858adf0ffcbdfab, type: 2}
   completions: {fileID: 11400000, guid: 70e4cb25c3c4749be8218b6efe0ee894, type: 2}
-  gridString: -2,-2,11,-2,1,1,1,1,-2,215,-2,-2
+  gridString: -1,3,-1,215,-2,2,-2,-1,-1,11,3,-2
   rows: 3
   columns: 4
+  gridSize: {x: 3, y: 4}
+  bingoItemsRequired: 3
+  collectableCount: 1
