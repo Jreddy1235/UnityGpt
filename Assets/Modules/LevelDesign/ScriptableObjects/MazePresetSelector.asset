@@ -16,10 +16,10 @@ MonoBehaviour:
   defaultPreset: Common
   presets:
   - name: Common
-    gridCreator: {fileID: 11400000, guid: e53f59d6175c44420bc396af92eb60fa, type: 2}
+    gridCreator: {fileID: 11400000, guid: efad8c147eb76476c91814b5c3556062, type: 2}
   - name: Easy
     gridCreator: {fileID: 11400000, guid: e22128e80e5f348c394e8b5fe69ee6da, type: 2}
   - name: Medium
     gridCreator: {fileID: 11400000, guid: 823b79271aa264bb5a3ccb0335ab73b7, type: 2}
   - name: Hard
-    gridCreator: {fileID: 0}
+    gridCreator: {fileID: 11400000, guid: d0f8cbb22d3b64bed84e9def63a6ed5b, type: 2}

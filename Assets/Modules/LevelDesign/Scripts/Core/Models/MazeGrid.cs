@@ -9,7 +9,6 @@ namespace UnityGPT
         public List<Stack<MazeTile>> MockPaths { get; } = new();
         public List<Stack<MazeTile>> CoveragePaths { get; } = new();
         public List<Stack<MazeTile>> Shortcuts { get; } = new();
-        public List<Stack<MazeTile>> Longcuts { get; } = new();
         private MazeTile[,] Grid { get; }
         public MazeTile this[int i, int j] => Grid[i, j];
         public MazeTile SelectedTile { get; set; }

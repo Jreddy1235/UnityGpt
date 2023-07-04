@@ -56,8 +56,8 @@ MonoBehaviour:
       _suppressLogs: 0
   - action:
       GuidAssignmentFailed: 0
-      GUID: 782168d7562844cba3f0e2be38d96b4c
-      _typeNameAndAssembly: UnityGPT.MazePlaceShortcutsOnGrid, Assembly-CSharp
+      GUID: 55f6e979d3584f2eb81be56156109900
+      _typeNameAndAssembly: UnityGPT.MazeCreateMockPaths, Assembly-CSharp
       _suppressLogs: 0
     rules:
     - GuidAssignmentFailed: 0
@@ -66,13 +66,13 @@ MonoBehaviour:
       _suppressLogs: 0
   - action:
       GuidAssignmentFailed: 0
-      GUID: 55f6e979d3584f2eb81be56156109900
-      _typeNameAndAssembly: UnityGPT.MazeCreateMockPaths, Assembly-CSharp
+      GUID: 782168d7562844cba3f0e2be38d96b4c
+      _typeNameAndAssembly: UnityGPT.MazePlaceShortcutsOnGrid, Assembly-CSharp
       _suppressLogs: 0
     rules:
     - GuidAssignmentFailed: 0
-      GUID: 485d19b9f854485294143216626c5613
-      _typeNameAndAssembly: UnityGPT.MazeIsTileAvailable, Assembly-CSharp
+      GUID: 4fe72dfd611d46f893e16a07840932f1
+      _typeNameAndAssembly: UnityGPT.MazeCanTileBeShortcut, Assembly-CSharp
       _suppressLogs: 0
   - action:
       GuidAssignmentFailed: 0
@@ -87,4 +87,14 @@ MonoBehaviour:
     - GuidAssignmentFailed: 0
       GUID: 5819d7f088e64f06aad7dd1a99252c67
       _typeNameAndAssembly: UnityGPT.MazeHasInventoryItems, Assembly-CSharp
+      _suppressLogs: 0
+  - action:
+      GuidAssignmentFailed: 0
+      GUID: 8e09dff42e9d42ad9fa817a0d3f303a6
+      _typeNameAndAssembly: UnityGPT.MazeRemoveShorterPaths, Assembly-CSharp
+      _suppressLogs: 0
+    rules:
+    - GuidAssignmentFailed: 0
+      GUID: 5dac681150364c369af607e50c9b9de4
+      _typeNameAndAssembly: UnityGPT.MazeHasPath, Assembly-CSharp
       _suppressLogs: 0

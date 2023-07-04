@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace UnityGPT
@@ -83,7 +82,7 @@ namespace UnityGPT
                 {
                     if (Grid.BindingTiles.HasValue(tile, _bindingTiles)) continue;
 
-                    distance = GetDistance(tile, currentTile);
+                    distance = tile.GetDistance(currentTile);
                     if (!(distance < _currentDistance)) continue;
                     _currentDistance = distance;
                     _nearestTile = tile;
@@ -92,7 +91,7 @@ namespace UnityGPT
 
             if (_nearestTile == null) return true;
 
-            distance = GetDistance(_nearestTile, currentTile);
+            distance = _nearestTile.GetDistance(currentTile);
             if (distance == 0)
             {
                 _nearestTile = null;
@@ -108,11 +107,6 @@ namespace UnityGPT
 
             _currentDistance = distance;
             return true;
-        }
-
-        private float GetDistance(MazeTile tile, MazeTile otherTile)
-        {
-            return Mathf.Pow(tile.RowIndex - otherTile.RowIndex, 2) + Mathf.Pow(tile.ColumnIndex - otherTile.ColumnIndex, 2);
         }
     }
 }

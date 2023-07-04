@@ -11,6 +11,7 @@ namespace UnityGPT
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private Range reqInventoryItems;
         [SerializeField] private int iterations;
+        [SerializeField] private LongcutsInfo longcutsInfo;
         [SerializeField] private MockPathInfo mockPathInfo;
         [SerializeField] private ShortcutsInfo shortcutsInfo;
         [SerializeField] private Character[] characters;
@@ -38,6 +39,7 @@ namespace UnityGPT
         public BaseBoardElement[] ExtraElements => extraElements;
         public MockPathInfo MockPathInfo => mockPathInfo;
         public ShortcutsInfo ShortcutsInfo => shortcutsInfo;
+        public LongcutsInfo LongcutsInfo => longcutsInfo;
 
         public int GetMappedCharacter(int collectableId)
         {
@@ -139,5 +141,17 @@ namespace UnityGPT
         [SerializeField] [Range(0, 1)] private float frequency;
 
         public float Frequency => frequency;
+    }
+    
+    [Serializable]
+    public class LongcutsInfo
+    {
+        [SerializeField] [Range(0, 10)] private int offset;
+        [SerializeField] [Range(0, 10)] private int gapCount;
+        [SerializeField] [Range(0, 10)] private int pathLength;
+
+        public int Offset => offset;
+        public int GapCount => gapCount;
+        public int PathLength => pathLength;
     }
 }
