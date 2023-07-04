@@ -21,6 +21,7 @@ namespace UnityGPT
         private List<int> _layout;
         private int _index;
         private string _text;
+        private bool _needAI;
 
         private void OnEnable()
         {
@@ -32,14 +33,16 @@ namespace UnityGPT
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            GUILayout.Space(10);
 
             if (_visualDesigner.Settings == null) return;
 
-            _text = EditorGUILayout.TextArea(_text, GUILayout.MinHeight(70));
+            _needAI = EditorGUILayout.Toggle("Need AI", _needAI);
+
+            if (_needAI)
+                _text = EditorGUILayout.TextArea(_text, GUILayout.MinHeight(70));
 
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Generate via AI", GUILayout.Height(ButtonHeight)))
+            if (_needAI && GUILayout.Button("Generate via AI", GUILayout.Height(ButtonHeight)))
             {
                 EditorPrefs.SetString(MazeQuery, _text);
                 _visualDesigner.SendRequest(_text, OnGridCreated);
@@ -47,6 +50,7 @@ namespace UnityGPT
 
             if (GUILayout.Button("Swift Generate", GUILayout.Height(ButtonHeight)))
             {
+                _visualDesigner.OverrideGridConfiguration();
                 _visualDesigner.GenerateGrid(OnGridCreated);
             }
 

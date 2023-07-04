@@ -12,6 +12,9 @@ namespace UnityGPT
         [SerializeField] [HideInInspector] private string gridString;
         [SerializeField] [HideInInspector] private int rows;
         [SerializeField] [HideInInspector] private int columns;
+        [SerializeField] private Vector2Int gridSize;
+        [SerializeField] private int bingoItemsRequired;
+        [SerializeField] private int collectableCount;
 
         public MazeSettings Settings => presetSelector == null ? null : presetSelector.Settings;
         public MazeGridConfiguration GridConfiguration => GridCreator.Configuration;
@@ -51,6 +54,14 @@ namespace UnityGPT
             if (GridCreator != null)
                 GridCreator.DoReset();
             _presetName = null;
+        }
+
+        public void OverrideGridConfiguration()
+        {
+            GridConfiguration.GridSize = gridSize;
+            GridConfiguration.BingoItemsRequired = bingoItemsRequired;
+            GridConfiguration.Collectables[0].Amount.Min =
+                GridConfiguration.Collectables[0].Amount.Max = collectableCount;
         }
 
         private void OnGridCreated(string gridStr, int rowCount, int columnCount)

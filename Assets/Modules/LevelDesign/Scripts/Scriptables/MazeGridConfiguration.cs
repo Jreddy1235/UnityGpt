@@ -19,7 +19,17 @@ namespace UnityGPT
         [SerializeField] private Obstacle[] obstacles;
         [SerializeField] private BaseBoardElement[] extraElements;
 
-        public Vector2Int GridSize => gridSize;
+        public Vector2Int GridSize
+        {
+            get => gridSize;
+            set => gridSize = value;
+        }
+
+        public int BingoItemsRequired
+        {
+            set => reqInventoryItems.Min = reqInventoryItems.Max = value;
+        }
+
         public Range ReqInventoryItems => reqInventoryItems;
         public int Iterations => iterations;
         public Character[] Characters => characters;
@@ -42,6 +52,7 @@ namespace UnityGPT
 
         public List<BaseBoardElement> BoardElements => characters.Concat<BaseBoardElement>(collectables)
             .Concat(obstacles).Concat(characters).Concat(extraElements).ToList();
+
     }
 
     [Serializable]
@@ -85,8 +96,17 @@ namespace UnityGPT
         [SerializeField] private int min;
         [SerializeField] private int max;
 
-        public int Min => min;
-        public int Max => max;
+        public int Min
+        {
+            get => min;
+            set => min = value;
+        }
+
+        public int Max
+        {
+            get => max;
+            set => max = value;
+        }
     }
 
     [Serializable]
