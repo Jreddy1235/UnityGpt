@@ -120,7 +120,8 @@ namespace UnityGPT
         
         private MazeTile GetEmptyTile(bool doNotSkipForPathTiles = true)
         {
-            foreach (var tile in Grid.PathMappingTiles())
+            var pathTiles = Grid.PathMappingTiles();
+            foreach (var tile in pathTiles)
             {
                 if (!doNotSkipForPathTiles) break;
                 if (tile.Value != MazeConstants.TileOnlyId) continue;
@@ -131,6 +132,7 @@ namespace UnityGPT
             foreach (var tile in Grid.ToList())
             {
                 if (tile.Value != MazeConstants.TileOnlyId) continue;
+                if (!doNotSkipForPathTiles && pathTiles.Any(x => x == tile)) continue;
 
                 return tile;
             }
