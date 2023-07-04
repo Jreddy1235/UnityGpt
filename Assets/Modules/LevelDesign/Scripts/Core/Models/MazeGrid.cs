@@ -80,22 +80,27 @@ namespace UnityGPT
 
         public List<List<MazeTile>> PathTileForElementPlacement()
         {
+            var pathTiles = new List<List<MazeTile>>
+            {
+                Shortcuts.SelectMany(stack => stack).ToList(),
+                CoveragePaths.SelectMany(stack => stack).ToList(),
+                MockPaths.SelectMany(stack => stack).ToList(),
+                PathMappingTiles()
+            };
+            
+            return pathTiles;
+        }
+
+        public List<MazeTile> PathMappingTiles()
+        {
             var pathMappingTiles = new List<MazeTile>();
             foreach (var pathInfo in PathsMapping.Values)
             {
                 pathMappingTiles.AddRange(pathInfo.Paths.Values.SelectMany(path =>
                     path.Where(tile => tile != path.First() && tile != path.Last())));
             }
-            
-            var pathTiles = new List<List<MazeTile>>
-            {
-                Shortcuts.SelectMany(stack => stack).ToList(),
-                CoveragePaths.SelectMany(stack => stack).ToList(),
-                MockPaths.SelectMany(stack => stack).ToList(),
-                pathMappingTiles
-            };
-            
-            return pathTiles;
+
+            return pathMappingTiles;
         }
     }
 }

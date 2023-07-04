@@ -66,54 +66,10 @@ MonoBehaviour:
       _suppressLogs: 0
   - action:
       GuidAssignmentFailed: 0
-      GUID: 782168d7562844cba3f0e2be38d96b4c
-      _typeNameAndAssembly: UnityGPT.MazePlaceShortcutsOnGrid, Assembly-CSharp
-      _suppressLogs: 0
-    rules:
-    - GuidAssignmentFailed: 0
-      GUID: 4fe72dfd611d46f893e16a07840932f1
-      _typeNameAndAssembly: UnityGPT.MazeCanTileBeShortcut, Assembly-CSharp
-      _suppressLogs: 0
-  - action:
-      GuidAssignmentFailed: 0
-      GUID: 9261d091810344a2ab51693fad100b81
-      _typeNameAndAssembly: UnityGPT.MazePlaceMechanicsOnGrid, Assembly-CSharp
-      _suppressLogs: 0
-    rules:
-    - GuidAssignmentFailed: 0
-      GUID: 3409c691a12ed485da819137d1a12b79
-      _typeNameAndAssembly: UnityGPT.MazeSelectShortcutTiles, Assembly-CSharp
-      _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: fba3ec83c37da45e8bdf3c446238cd30
-      _typeNameAndAssembly: UnityGPT.MazeSelectCoveragePathTiles, Assembly-CSharp
-      _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: 40e14ee00b13a4f01a954fb3d23f980e
-      _typeNameAndAssembly: UnityGPT.MazeSelectMockPathTiles, Assembly-CSharp
-      _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: 05fad689078824353ae3266f0dacfdc2
-      _typeNameAndAssembly: UnityGPT.MazeSelectPathMappingTiles, Assembly-CSharp
-      _suppressLogs: 0
-  - action:
-      GuidAssignmentFailed: 0
       GUID: 3681f847c384740ce881bbbcc38d0f61
       _typeNameAndAssembly: UnityGPT.MazePlaceObstaclesOnGrid, Assembly-CSharp
       _suppressLogs: 0
     rules:
-    - GuidAssignmentFailed: 0
-      GUID: 3409c691a12ed485da819137d1a12b79
-      _typeNameAndAssembly: UnityGPT.MazeSelectShortcutTiles, Assembly-CSharp
-      _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: fba3ec83c37da45e8bdf3c446238cd30
-      _typeNameAndAssembly: UnityGPT.MazeSelectCoveragePathTiles, Assembly-CSharp
-      _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: 40e14ee00b13a4f01a954fb3d23f980e
-      _typeNameAndAssembly: UnityGPT.MazeSelectMockPathTiles, Assembly-CSharp
-      _suppressLogs: 0
     - GuidAssignmentFailed: 0
       GUID: 05fad689078824353ae3266f0dacfdc2
       _typeNameAndAssembly: UnityGPT.MazeSelectPathMappingTiles, Assembly-CSharp
@@ -122,9 +78,3 @@ MonoBehaviour:
       GUID: 5819d7f088e64f06aad7dd1a99252c67
       _typeNameAndAssembly: UnityGPT.MazeHasInventoryItems, Assembly-CSharp
       _suppressLogs: 0
-  - action:
-      GuidAssignmentFailed: 0
-      GUID: 1953c30d2c0646639e8cafa03239bb63
-      _typeNameAndAssembly: UnityGPT.MazePrintGrid, Assembly-CSharp
-      _suppressLogs: 0
-    rules: []
