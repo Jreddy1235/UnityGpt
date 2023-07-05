@@ -50,8 +50,8 @@ MonoBehaviour:
   - name: White
     id: 0
     amount:
-      min: 2
-      max: 4
+      min: 5
+      max: 7
     categoryId: Obstacles
     priority: 0
     weight: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
   - name: Red
     id: 1
     amount:
-      min: 2
-      max: 5
+      min: 4
+      max: 6
     categoryId: Obstacles
     priority: 0
     weight: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
   - name: Blue
     id: 2
     amount:
-      min: 2
-      max: 5
+      min: 5
+      max: 7
     categoryId: Obstacles
     priority: 0
     weight: 0
@@ -77,8 +77,8 @@ MonoBehaviour:
   - name: Green
     id: 3
     amount:
-      min: 2
-      max: 4
+      min: 4
+      max: 6
     categoryId: Obstacles
     priority: 0
     weight: 0
